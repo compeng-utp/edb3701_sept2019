@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%python\nimport numpy as np",
+      "text": "%python\nimport numpy as np\na \u003d np.array([1,2])",
       "user": "instruct",
-      "dateUpdated": "2019-10-09 05:06:03.828",
+      "dateUpdated": "2019-10-09 05:18:19.414",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -21,10 +21,32 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
       "apps": [],
       "jobName": "paragraph_1570597556369_-1011946440",
       "id": "20191009-050556_1226828495",
       "dateCreated": "2019-10-09 05:05:56.370",
+      "dateStarted": "2019-10-09 05:18:19.458",
+      "dateFinished": "2019-10-09 05:18:23.112",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%python\n",
+      "user": "instruct",
+      "dateUpdated": "2019-10-09 05:18:19.423",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1570598299419_1748458024",
+      "id": "20191009-051819_916450801",
+      "dateCreated": "2019-10-09 05:18:19.419",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
@@ -34,8 +56,7 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
-    "python:shared_process": [],
-    "spark:shared_process": []
+    "python:shared_process": []
   },
   "config": {
     "isZeppelinNotebookCronEnable": false
