@@ -1,9 +1,60 @@
 {
   "paragraphs": [
     {
-      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n\n// load bank data\nval PowerText \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/test.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"))\n        \n        \ncase class Power(A: String,   //0\n    B: Integer,\n\tC: Double)\n\t\nval df \u003d PowerText.map(s \u003d\u003e s.split(\",\")).map(\n            s \u003d\u003e Power(s(0).toString, \n            s(1).toInt,\n            s(2).toDouble \n            )).toDF()\n            \ndf.head()",
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval PowerText \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/test.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"))\n        \n        \ncase class Power(A: String,   //0\n    B: Integer,\n\tC: Double)\n\t\nval df \u003d PowerText.map(s \u003d\u003e s.split(\",\")).map(\n            s \u003d\u003e Power(s(0), \n            s(1).toInt,\n            s(2).toDouble \n            )).toDF()\n            \ndf.head(2)",
       "user": "instruct",
-      "dateUpdated": "2019-10-15 01:31:24.691",
+      "dateUpdated": "2019-10-15 01:48:45.646",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\nPowerText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[12] at parallelize at \u003cconsole\u003e:39\ndefined class Power\ndf: org.apache.spark.sql.DataFrame \u003d [A: string, B: int ... 1 more field]\nres12: Array[org.apache.spark.sql.Row] \u003d Array([text,1,2.2], [texty,2,3.3])\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.4:4040/jobs/job?id\u003d2"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1571102958651_459082414",
+      "id": "20191015-012918_2106196844",
+      "dateCreated": "2019-10-15 01:29:18.651",
+      "dateStarted": "2019-10-15 01:48:33.861",
+      "dateFinished": "2019-10-15 01:48:35.040",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval PowerText \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"))\n        \n        \ncase class Power(A: Integer,   //0\n    B: String,\n\tC: Double)\n\t\nval df \u003d PowerText.map(s \u003d\u003e s.split(\",\")).map(\n            s \u003d\u003e Power(s(0).toInt, \n            s(1),\n            s(2).toDouble \n            )).toDF()\n            \ndf.registerTempTable(\"power\")",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 01:53:47.812",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -15,28 +66,30 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "results": {
-        "code": "SUCCESS",
+        "code": "ERROR",
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\nPowerText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[62] at parallelize at \u003cconsole\u003e:63\ndefined class Power\ndf: org.apache.spark.sql.DataFrame \u003d [A: string, B: int ... 1 more field]\n"
+            "data": "java.net.SocketException: Broken pipe (Write failed)\n\tat java.net.SocketOutputStream.socketWrite0(Native Method)\n\tat java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)\n\tat java.net.SocketOutputStream.write(SocketOutputStream.java:155)\n\tat java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)\n\tat java.io.BufferedOutputStream.write(BufferedOutputStream.java:126)\n\tat org.apache.thrift.transport.TIOStreamTransport.write(TIOStreamTransport.java:145)\n\tat org.apache.thrift.protocol.TBinaryProtocol.writeString(TBinaryProtocol.java:202)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterContext$RemoteInterpreterContextStandardScheme.write(RemoteInterpreterContext.java:1228)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterContext$RemoteInterpreterContextStandardScheme.write(RemoteInterpreterContext.java:1074)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterContext.write(RemoteInterpreterContext.java:956)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$interpret_args$interpret_argsStandardScheme.write(RemoteInterpreterService.java:6781)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$interpret_args$interpret_argsStandardScheme.write(RemoteInterpreterService.java:6704)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$interpret_args.write(RemoteInterpreterService.java:6631)\n\tat org.apache.thrift.TServiceClient.sendBase(TServiceClient.java:63)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.send_interpret(RemoteInterpreterService.java:268)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.interpret(RemoteInterpreterService.java:257)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter$4.call(RemoteInterpreter.java:233)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter$4.call(RemoteInterpreter.java:229)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.callRemoteFunction(RemoteInterpreterProcess.java:135)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:228)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:437)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:188)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:307)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n"
           }
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1571102958651_459082414",
-      "id": "20191015-012918_2106196844",
-      "dateCreated": "2019-10-15 01:29:18.651",
-      "dateStarted": "2019-10-15 01:31:14.098",
-      "dateFinished": "2019-10-15 01:31:14.904",
-      "status": "FINISHED",
+      "jobName": "paragraph_1571104125758_1618031464",
+      "id": "20191015-014845_2039064109",
+      "dateCreated": "2019-10-15 01:48:45.758",
+      "dateStarted": "2019-10-15 01:53:47.841",
+      "dateFinished": "2019-10-15 01:53:47.848",
+      "status": "ERROR",
+      "errorMessage": "java.net.SocketException: Broken pipe (Write failed)\n\tat java.net.SocketOutputStream.socketWrite0(Native Method)\n\tat java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)\n\tat java.net.SocketOutputStream.write(SocketOutputStream.java:155)\n\tat java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:82)\n\tat java.io.BufferedOutputStream.write(BufferedOutputStream.java:126)\n\tat org.apache.thrift.transport.TIOStreamTransport.write(TIOStreamTransport.java:145)\n\tat org.apache.thrift.protocol.TBinaryProtocol.writeString(TBinaryProtocol.java:202)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterContext$RemoteInterpreterContextStandardScheme.write(RemoteInterpreterContext.java:1228)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterContext$RemoteInterpreterContextStandardScheme.write(RemoteInterpreterContext.java:1074)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterContext.write(RemoteInterpreterContext.java:956)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$interpret_args$interpret_argsStandardScheme.write(RemoteInterpreterService.java:6781)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$interpret_args$interpret_argsStandardScheme.write(RemoteInterpreterService.java:6704)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$interpret_args.write(RemoteInterpreterService.java:6631)\n\tat org.apache.thrift.TServiceClient.sendBase(TServiceClient.java:63)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.send_interpret(RemoteInterpreterService.java:268)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.interpret(RemoteInterpreterService.java:257)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter$4.call(RemoteInterpreter.java:233)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter$4.call(RemoteInterpreter.java:229)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterProcess.callRemoteFunction(RemoteInterpreterProcess.java:135)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:228)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:437)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:188)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:307)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -68,18 +121,6 @@
             "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\nPowerText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[20] at parallelize at \u003cconsole\u003e:60\ndefined class Power\ndf: org.apache.spark.sql.DataFrame \u003d [transaction: int, active_energy_delivered_into_load: int ... 81 more fields]\nwarning: there was one deprecation warning; re-run with -deprecation for details\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2.0 failed 1 times, most recent failure: Lost task 0.0 in stage 2.0 (TID 2, localhost, executor driver): java.lang.NumberFormatException: For input string: \"\"\n\tat java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\n\tat java.lang.Integer.parseInt(Integer.java:592)\n\tat java.lang.Integer.parseInt(Integer.java:615)\n\tat scala.collection.immutable.StringLike$class.toInt(StringLike.scala:272)\n\tat scala.collection.immutable.StringOps.toInt(StringOps.scala:29)\n\tat $anonfun$2.apply(\u003cconsole\u003e:64)\n\tat $anonfun$2.apply(\u003cconsole\u003e:64)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n\tat org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n\tat org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:395)\n\tat org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:234)\n\tat org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:228)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:87)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:108)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1499)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1487)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1486)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1486)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:814)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1714)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1669)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1658)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:630)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2022)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2043)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2062)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:336)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:2853)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2153)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2153)\n  at org.apache.spark.sql.Dataset$$anonfun$55.apply(Dataset.scala:2837)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:65)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:2836)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2153)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2160)\n  ... 52 elided\nCaused by: java.lang.NumberFormatException: For input string: \"\"\n  at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\n  at java.lang.Integer.parseInt(Integer.java:592)\n  at java.lang.Integer.parseInt(Integer.java:615)\n  at scala.collection.immutable.StringLike$class.toInt(StringLike.scala:272)\n  at scala.collection.immutable.StringOps.toInt(StringOps.scala:29)\n  at $anonfun$2.apply(\u003cconsole\u003e:64)\n  at $anonfun$2.apply(\u003cconsole\u003e:64)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n  at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:395)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:234)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:228)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n  at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:87)\n  at org.apache.spark.scheduler.Task.run(Task.scala:108)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)\n  ... 3 more\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.4:4040/jobs/job?id\u003d2"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1570605586984_-516421035",
@@ -265,6 +306,7 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
+    "python:shared_process": [],
     "spark:shared_process": []
   },
   "config": {
