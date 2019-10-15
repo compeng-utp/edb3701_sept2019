@@ -25,7 +25,7 @@
     {
       "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),10)\n        \n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
       "user": "instruct",
-      "dateUpdated": "2019-10-15 03:04:24.650",
+      "dateUpdated": "2019-10-15 03:27:40.153",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -48,7 +48,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\njava.lang.OutOfMemoryError: Java heap space\n"
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\njava.lang.OutOfMemoryError: Java heap space\n  at java.util.Arrays.copyOf(Arrays.java:3332)\n  at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)\n  at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:596)\n  at java.lang.StringBuilder.append(StringBuilder.java:190)\n  at org.apache.commons.io.output.StringBuilderWriter.write(StringBuilderWriter.java:138)\n  at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:2002)\n  at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1980)\n  at org.apache.commons.io.IOUtils.copy(IOUtils.java:1957)\n  at org.apache.commons.io.IOUtils.copy(IOUtils.java:1907)\n  at org.apache.commons.io.IOUtils.toString(IOUtils.java:778)\n  at org.apache.commons.io.IOUtils.toString(IOUtils.java:896)\n  ... 21 elided\n"
           }
         ]
       },
@@ -56,9 +56,37 @@
       "jobName": "paragraph_1571108160252_262167209",
       "id": "20191015-025600_438924703",
       "dateCreated": "2019-10-15 02:56:00.252",
-      "dateStarted": "2019-10-15 03:04:24.663",
-      "dateFinished": "2019-10-15 03:04:26.323",
+      "dateStarted": "2019-10-15 03:27:40.169",
+      "dateFinished": "2019-10-15 03:27:43.020",
       "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "txt.map(s\u003d\u003es.split(\",\").map(s\u003d\u003es(2)).reduce((a,b)\u003d\u003ea+b)",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 03:27:38.353",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "INCOMPLETE",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1571108181380_1123472529",
+      "id": "20191015-025621_1135329006",
+      "dateCreated": "2019-10-15 02:56:21.380",
+      "dateStarted": "2019-10-15 03:27:38.369",
+      "dateFinished": "2019-10-15 03:27:38.375",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -69,9 +97,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1571108181380_1123472529",
-      "id": "20191015-025621_1135329006",
-      "dateCreated": "2019-10-15 02:56:21.380",
+      "jobName": "paragraph_1571109100572_-490227712",
+      "id": "20191015-031140_82513247",
+      "dateCreated": "2019-10-15 03:11:40.572",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
