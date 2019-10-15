@@ -25,7 +25,7 @@
     {
       "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),10)\n        \n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
       "user": "instruct",
-      "dateUpdated": "2019-10-15 03:27:40.153",
+      "dateUpdated": "2019-10-15 03:28:45.854",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -44,27 +44,39 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\njava.lang.OutOfMemoryError: Java heap space\n  at java.util.Arrays.copyOf(Arrays.java:3332)\n  at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)\n  at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:596)\n  at java.lang.StringBuilder.append(StringBuilder.java:190)\n  at org.apache.commons.io.output.StringBuilderWriter.write(StringBuilderWriter.java:138)\n  at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:2002)\n  at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1980)\n  at org.apache.commons.io.IOUtils.copy(IOUtils.java:1957)\n  at org.apache.commons.io.IOUtils.copy(IOUtils.java:1907)\n  at org.apache.commons.io.IOUtils.toString(IOUtils.java:778)\n  at org.apache.commons.io.IOUtils.toString(IOUtils.java:896)\n  ... 21 elided\n"
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\ntxt: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[0] at parallelize at \u003cconsole\u003e:31\nres6: Int \u003d 3173502\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.4:4040/jobs/job?id\u003d0"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1571108160252_262167209",
       "id": "20191015-025600_438924703",
       "dateCreated": "2019-10-15 02:56:00.252",
-      "dateStarted": "2019-10-15 03:27:40.169",
-      "dateFinished": "2019-10-15 03:27:43.020",
-      "status": "ERROR",
+      "dateStarted": "2019-10-15 03:28:45.922",
+      "dateFinished": "2019-10-15 03:29:05.181",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "txt.map(s\u003d\u003es.split(\",\").map(s\u003d\u003es(2)).reduce((a,b)\u003d\u003ea+b)",
+      "text": "// Number of entries for device id 26\ntxt.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003e s(0).toInt \u003d\u003d 26).map(s\u003d\u003e1).reduce((a,b)\u003d\u003ea+b)",
       "user": "instruct",
-      "dateUpdated": "2019-10-15 03:27:38.353",
+      "dateUpdated": "2019-10-15 03:30:49.953",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -77,15 +89,169 @@
         "forms": {}
       },
       "results": {
-        "code": "INCOMPLETE",
-        "msg": []
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res16: Int \u003d 108783\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.4:4040/jobs/job?id\u003d4"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1571108181380_1123472529",
       "id": "20191015-025621_1135329006",
       "dateCreated": "2019-10-15 02:56:21.380",
-      "dateStarted": "2019-10-15 03:27:38.369",
-      "dateFinished": "2019-10-15 03:27:38.375",
+      "dateStarted": "2019-10-15 03:30:49.972",
+      "dateFinished": "2019-10-15 03:30:53.916",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Find the peak value for active power total\ntxt.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003e (s(0).toInt \u003d\u003d 26)||(s(0).toInt\u003d\u003d1)).map(s\u003d\u003es(2).toDouble).reduce((a,b)\u003d\u003emath.max(a,b))\n\ntxt.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003e s(0).toInt\u003d\u003d1).map(s\u003d\u003es(2).toDouble).reduce((a,b)\u003d\u003emath.max(a,b))\ntxt.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003e s(0).toInt \u003d\u003d 26).map(s\u003d\u003es(2).toDouble).reduce((a,b)\u003d\u003emath.max(a,b))\n",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 03:48:11.830",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res29: Double \u003d 569.7766\nres30: Double \u003d 315.16046\nres31: Double \u003d 569.7766\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.4:4040/jobs/job?id\u003d7",
+            "http://172.17.0.4:4040/jobs/job?id\u003d8",
+            "http://172.17.0.4:4040/jobs/job?id\u003d9"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1571110260407_-855431721",
+      "id": "20191015-033100_1015461145",
+      "dateCreated": "2019-10-15 03:31:00.407",
+      "dateStarted": "2019-10-15 03:48:11.847",
+      "dateFinished": "2019-10-15 03:48:22.948",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Find peak kW value during on-peak hours (8am - 10pm )\n\nimport java.time.LocalDateTime\nimport java.time.LocalDate\nimport java.time.LocalTime\nimport java.time.format.DateTimeFormatter\n\nval refTime \u003d LocalTime.parse(\"08:00:00\", DateTimeFormatter.ofPattern(\"HH:mm:ss\"))\ntxt.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003e s(0).toInt \u003d\u003d 26).filter(s\u003d\u003eLocalDateTime.parse(s(1), DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\") ).toLocalTime().isAfter(refTime)).filter(s\u003d\u003eLocalDateTime.parse(s(1), DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\") ).toLocalTime().isBefore(refTime.plusMinutes(480))   ).map(s\u003d\u003es(2).toDouble).reduce((a,b)\u003d\u003emath.max(a,b))",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 04:13:43.428",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import java.time.LocalDateTime\nimport java.time.LocalDate\nimport java.time.LocalTime\nimport java.time.format.DateTimeFormatter\nrefTime: java.time.LocalTime \u003d 08:00\nres69: Double \u003d 467.8415\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.4:4040/jobs/job?id\u003d12"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1571111669119_1310015165",
+      "id": "20191015-035429_2115307341",
+      "dateCreated": "2019-10-15 03:54:29.119",
+      "dateStarted": "2019-10-15 04:12:41.703",
+      "dateFinished": "2019-10-15 04:12:46.111",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Date Time Formatting\n\nimport java.time.LocalDateTime\nimport java.time.LocalDate\nimport java.time.LocalTime\nimport java.time.format.DateTimeFormatter\n\nval str \u003d \"2019-08-05 07:00:14\"\n\nval dateTime \u003d LocalDateTime.parse(str, DateTimeFormatter.ofPattern(\"yyyy-MM-dd HH:mm:ss\") )\nval dateFromDateTime \u003d dateTime.toLocalDate();\nval timeFromDateTime \u003d dateTime.toLocalTime();\n\nval refTime \u003d LocalTime.parse(\"08:00:00\", DateTimeFormatter.ofPattern(\"HH:mm:ss\"))\nval choice \u003d timeFromDateTime.isAfter(refTime.plusMinutes(480))\n    \n\n\n// plusMinutes, minusMinutes, isBefore, isAfter\n//https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html#patterns",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 04:07:41.430",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import java.time.LocalDateTime\nimport java.time.LocalDate\nimport java.time.LocalTime\nimport java.time.format.DateTimeFormatter\nstr: String \u003d 2019-08-05 07:00:14\ndateTime: java.time.LocalDateTime \u003d 2019-08-05T07:00:14\ndateFromDateTime: java.time.LocalDate \u003d 2019-08-05\ntimeFromDateTime: java.time.LocalTime \u003d 07:00:14\nrefTime: java.time.LocalTime \u003d 08:00\nchoice: Boolean \u003d false\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1571109100572_-490227712",
+      "id": "20191015-031140_82513247",
+      "dateCreated": "2019-10-15 03:11:40.572",
+      "dateStarted": "2019-10-15 04:07:32.208",
+      "dateFinished": "2019-10-15 04:07:32.807",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -97,9 +263,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1571109100572_-490227712",
-      "id": "20191015-031140_82513247",
-      "dateCreated": "2019-10-15 03:11:40.572",
+      "jobName": "paragraph_1571111506652_791978966",
+      "id": "20191015-035146_2034626492",
+      "dateCreated": "2019-10-15 03:51:46.652",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
