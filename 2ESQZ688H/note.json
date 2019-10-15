@@ -1,8 +1,16 @@
 {
   "paragraphs": [
     {
+      "text": "sc.version",
       "user": "instruct",
-      "config": {},
+      "dateUpdated": "2019-10-15 02:56:00.156",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {}
+      },
       "settings": {
         "params": {},
         "forms": {}
@@ -11,6 +19,59 @@
       "jobName": "paragraph_1570774636267_-1759311821",
       "id": "20191011-061716_662046391",
       "dateCreated": "2019-10-11 06:17:16.267",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),10)\n        \n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 03:04:24.650",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\njava.lang.OutOfMemoryError: Java heap space\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1571108160252_262167209",
+      "id": "20191015-025600_438924703",
+      "dateCreated": "2019-10-15 02:56:00.252",
+      "dateStarted": "2019-10-15 03:04:24.663",
+      "dateFinished": "2019-10-15 03:04:26.323",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "instruct",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1571108181380_1123472529",
+      "id": "20191015-025621_1135329006",
+      "dateCreated": "2019-10-15 02:56:21.380",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
