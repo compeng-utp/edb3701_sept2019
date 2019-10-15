@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "\nimport org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n\n// create any java object\nval myObject \u003d \"data/test.csv\"\n\n// put object into ResourcePool\nz.put(\"file_location\", myObject)\n\n//file_location \u003d \"data/energy.csv\"\n\n// load bank data\n//val df \u003d sc.parallelize(\n//    IOUtils.toString(\n//        new URL(file_location),\n //       Charset.forName(\"utf8\")).split(\"\\n\"))\n        \n\n\n//df \u003d sqlContext.load(source\u003d\"com.databricks.spark.csv\", path \u003d file_location, header \u003d True,inferSchema \u003d True)\n//df \u003d spark.read.format(\"csv\").option(\"sep\", \";\").option(\"inferSchema\", \"true\").option(\"header\", \"true\").load(file_location)\n//display(df)\n",
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n\n// load bank data\nval PowerText \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/test.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"))\n        \n        \ncase class Power(A: String,   //0\n    B: Integer,\n\tC: Double)\n\t\nval df \u003d PowerText.map(s \u003d\u003e s.split(\",\")).map(\n            s \u003d\u003e Power(s(0).toString, \n            s(1).toInt,\n            s(2).toDouble \n            )).toDF()\n            \ndf.head()",
       "user": "instruct",
-      "dateUpdated": "2019-10-11 05:26:21.211",
+      "dateUpdated": "2019-10-15 01:31:24.691",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -26,39 +26,48 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\nmyObject: String \u003d data/test.csv\n"
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\nPowerText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[62] at parallelize at \u003cconsole\u003e:63\ndefined class Power\ndf: org.apache.spark.sql.DataFrame \u003d [A: string, B: int ... 1 more field]\n"
           }
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1570605586984_-516421035",
-      "id": "20191009-071946_629705589",
-      "dateCreated": "2019-10-09 07:19:46.984",
-      "dateStarted": "2019-10-11 05:26:21.229",
-      "dateFinished": "2019-10-11 05:26:22.039",
+      "jobName": "paragraph_1571102958651_459082414",
+      "id": "20191015-012918_2106196844",
+      "dateCreated": "2019-10-15 01:29:18.651",
+      "dateStarted": "2019-10-15 01:31:14.098",
+      "dateFinished": "2019-10-15 01:31:14.904",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%pyspark\nrdd \u003d sc.textFile(\"test.csv\")\ndf \u003d rdd.map(lambda x : x.split(\u0027,\u0027) ).map(lambda x : { \u0027A\u0027: x[0].strip(), \u0027B\u0027: x[1].strip(),\u0027C\u0027: x[2].strip()}).toDF()\n#df.write.parquet(\"data/test.parquet\")\n",
+      "text": "\nimport org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n\n// load bank data\nval PowerText \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/export30hr.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"))\n        \n\ncase class Power(transaction: Integer,   //0\n    active_energy_delivered_into_load: Integer,\n\tactive_energy_delivered_minus_received:Integer,\t\n\tactive_energy_delivered_plus_received: Integer, \t\n\tactive_energy_received_out_of_load: Integer,\t\n\tactivepowera: Double,\n\tactivepowerb: Double,\n\tactivepowerc: Double,\n\tactivepowertotal: Double,\n\tapparent_energy_deceived: Integer,\t\n\tapparent_energy_delivered: Integer, //10\n\tapparent_energy_delivered_minus_received:Integer,\n\tapparent_energy_delivered_plus_received: Integer,\n\tapparentpowera: Double,\n\tapparentpowerb: Double,\n\tapparentpowerc: Double,\n\tapparentpowertotal: Double,\n\tblock: String,\n\tcurrenta:Double,\n\tcurrentavg: Double,\n\tcurrentb: Double, // 20\n\tcurrentc: Double,\n\tcurrentn: Double,\n\tdate_time: String,\n\tdate_time_offset: String,\n\tdevice_id: Integer,\n\tfrequency: Double,\n\tid: Integer,\n\tindex: Integer,\n\tlastdemand_1: Double,\n\tlastdemand_2: Double, //30\n\tlastdemand_3: Double,\n\tlastdemand_8: Double,\n\tmain: String,\n\tname: String,\n\tpeakdemand_1: Double, \n\tpeakdemand_2: Double, \n\tpeakdemand_3: Double, \n\tpeakdemand_8: Double, \n\tpeakdemanddatetime_1: String, \n\tpeakdemanddatetime_2: String, //40\n\tpeakdemanddatetime_3: String,\n\tpeakdemanddatetime_8: String,\n\tpowerfactora: Double,\n\tpowerfactorb: Double,\n\tpowerfactorc: Double,\n\tpowerfactortotal: Double,\n\tpredictdemand_1\t: Double,\n\tpredictdemand_2: Double,\n\tpredictdemand_3\t: Double,\n\tpredictdemand_8: Double,//50\n\tpresentdemand_1\t: Double,\n\tpresentdemand_2\t: Double,\n\tpresentdemand_3\t: Double,\n\tpresentdemand_8\t: Double,\n\treactive_energy_delivered: Integer,\n\treactive_energy_delivered_minus_received: Integer,\n\treactive_energy_delivered_plus_received: Integer,\n\treactive_energy_received: Integer,\n\treactivepowera: Double,\n\treactivepowerb: Double, //60\n\treactivepowerc: Double,\n\treactivepowertotal: Double,\n\tthd_current_a: Double,\n\tthd_current_b: Double,\n\tthd_current_c: Double,\n\tthd_current_g: Double,\n\tthd_current_n: Double,\n\tthd_voltage_ab\t: Double,\n\tthd_voltage_an: Double,\n\tthd_voltage_bc: Double,//70\n\tthd_voltage_bn: Double,\n\tthd_voltage_ca: Double,\n\tthd_voltage_cn: Double,\n\tthd_voltage_ll: Double,\n\tthd_voltage_ln: Double,\n\tvoltagea_b: Double,\n\tvoltagea_n: Double,\n\tvoltageb_c: Double,\n\tvoltageb_n: Double,\n\tvoltagec_a: Double,//80\n\tvoltagec_n: Double,\n\tvoltagel_lavg: Double \n\t)\n\n                    \nval df \u003d PowerText.map(s \u003d\u003e s.split(\",\")).map(\n            s \u003d\u003e Power(s(0).toInt, \n            s(1).toInt,\n            s(2).toInt,\n            s(3).toInt,\n            s(4).toInt,\n            s(5).toDouble,\n            s(6).toDouble,\n            s(7).toDouble,\n            s(8).toDouble,\n            s(9).toInt,\n            s(10).toInt,\n            s(11).toInt,\n            s(12).toInt,\n            s(13).toDouble,\n            s(14).toDouble,\n            s(15).toDouble,\n            s(16).toDouble,\n            s(17).toString,\n            s(18).toDouble,\n            s(19).toDouble,\n            s(20).toDouble,\n            s(21).toDouble,\n            s(22).toDouble,\n            s(23).toString,\n            s(24).toString,\n            s(25).toInt,\n            s(26).toDouble,\n            s(27).toInt,\n            s(28).toInt,\n            s(29).toDouble,\n            s(30).toDouble,\n            s(31).toDouble,\n            s(32).toDouble,\n            s(33).toString,\n            s(34).toString,\n            s(35).toDouble,\n            s(36).toDouble,\n            s(37).toDouble,\n            s(38).toDouble,\n            s(39).toString,\n            s(40).toString,\n            s(41).toString,\n            s(42).toString,\n            s(43).toDouble,\n            s(44).toDouble,\n            s(45).toDouble,\n            s(46).toDouble,\n            s(47).toDouble,\n            s(48).toDouble,\n            s(49).toDouble,\n            s(50).toDouble,\n            s(51).toDouble,\n            s(52).toDouble,\n            s(53).toDouble,\n            s(54).toDouble,\n            s(55).toInt,\n            s(56).toInt,\n            s(57).toInt,\n            s(58).toInt,\n            s(59).toDouble,\n            s(60).toDouble,\n            s(61).toDouble,\n            s(62).toDouble,\n            s(63).toDouble,\n            s(64).toDouble,\n            s(65).toDouble,\n            s(66).toDouble,\n            s(67).toDouble,\n            s(68).toDouble,\n            s(69).toDouble,\n            s(70).toDouble,\n            s(71).toDouble,\n            s(72).toDouble,\n            s(73).toDouble,\n            s(74).toDouble,\n            s(75).toDouble,\n            s(76).toDouble,\n            s(77).toDouble,\n            s(78).toDouble,\n            s(79).toDouble,\n            s(80).toDouble,\n            s(81).toDouble,\n            s(82).toDouble)\n).toDF()\ndf.registerTempTable(\"power\")\n\ndf.head()\n",
       "user": "instruct",
-      "dateUpdated": "2019-10-11 06:13:00.800",
+      "dateUpdated": "2019-10-15 01:03:56.791",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
         "editorSetting": {
-          "language": "python",
+          "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/python"
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\nPowerText: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[20] at parallelize at \u003cconsole\u003e:60\ndefined class Power\ndf: org.apache.spark.sql.DataFrame \u003d [transaction: int, active_energy_delivered_into_load: int ... 81 more fields]\nwarning: there was one deprecation warning; re-run with -deprecation for details\norg.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2.0 failed 1 times, most recent failure: Lost task 0.0 in stage 2.0 (TID 2, localhost, executor driver): java.lang.NumberFormatException: For input string: \"\"\n\tat java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\n\tat java.lang.Integer.parseInt(Integer.java:592)\n\tat java.lang.Integer.parseInt(Integer.java:615)\n\tat scala.collection.immutable.StringLike$class.toInt(StringLike.scala:272)\n\tat scala.collection.immutable.StringOps.toInt(StringOps.scala:29)\n\tat $anonfun$2.apply(\u003cconsole\u003e:64)\n\tat $anonfun$2.apply(\u003cconsole\u003e:64)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n\tat org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n\tat org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n\tat org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:395)\n\tat org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:234)\n\tat org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:228)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n\tat org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:87)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:108)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1499)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1487)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1486)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1486)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n  at scala.Option.foreach(Option.scala:257)\n  at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:814)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1714)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1669)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1658)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:630)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2022)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2043)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:2062)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:336)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:2853)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2153)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2153)\n  at org.apache.spark.sql.Dataset$$anonfun$55.apply(Dataset.scala:2837)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:65)\n  at org.apache.spark.sql.Dataset.withAction(Dataset.scala:2836)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2153)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2160)\n  ... 52 elided\nCaused by: java.lang.NumberFormatException: For input string: \"\"\n  at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)\n  at java.lang.Integer.parseInt(Integer.java:592)\n  at java.lang.Integer.parseInt(Integer.java:615)\n  at scala.collection.immutable.StringLike$class.toInt(StringLike.scala:272)\n  at scala.collection.immutable.StringOps.toInt(StringOps.scala:29)\n  at $anonfun$2.apply(\u003cconsole\u003e:64)\n  at $anonfun$2.apply(\u003cconsole\u003e:64)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at scala.collection.Iterator$$anon$11.next(Iterator.scala:409)\n  at org.apache.spark.sql.catalyst.expressions.GeneratedClass$GeneratedIterator.processNext(Unknown Source)\n  at org.apache.spark.sql.execution.BufferedRowIterator.hasNext(BufferedRowIterator.java:43)\n  at org.apache.spark.sql.execution.WholeStageCodegenExec$$anonfun$8$$anon$1.hasNext(WholeStageCodegenExec.scala:395)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:234)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$2.apply(SparkPlan.scala:228)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n  at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsInternal$1$$anonfun$apply$25.apply(RDD.scala:827)\n  at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n  at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n  at org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n  at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:87)\n  at org.apache.spark.scheduler.Task.run(Task.scala:108)\n  at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)\n  ... 3 more\n"
+          }
+        ]
       },
       "runtimeInfos": {
         "jobUrl": {
@@ -67,65 +76,75 @@
           "tooltip": "View in Spark web UI",
           "group": "spark",
           "values": [
-            "http://172.17.0.4:4040/jobs/job?id\u003d31"
+            "http://172.17.0.4:4040/jobs/job?id\u003d2"
           ],
           "interpreterSettingId": "spark"
         }
       },
       "apps": [],
-      "jobName": "paragraph_1570772018547_1455777737",
-      "id": "20191011-053338_862471810",
-      "dateCreated": "2019-10-11 05:33:38.547",
-      "dateStarted": "2019-10-11 06:11:04.478",
-      "dateFinished": "2019-10-11 06:10:39.717",
-      "status": "RUNNING",
-      "errorMessage": "",
+      "jobName": "paragraph_1570605586984_-516421035",
+      "id": "20191009-071946_629705589",
+      "dateCreated": "2019-10-09 07:19:46.984",
+      "dateStarted": "2019-10-15 01:03:56.809",
+      "dateFinished": "2019-10-15 01:04:00.568",
+      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "\n\tactive_energy_delivered_into_load,\n\tactive_energy_delivered_minus_received\t\n\tactive_energy_delivered_plus_received\t\n\tactive_energy_received_out_of_load\t\n\tactivepowera\t\n\tactivepowerb\t\n\tactivepowerc\t\n\tactivepowertotal\t\n\tapparent_energy_deceived\t\n\tapparent_energy_delivered\t\n\tapparent_energy_delivered_minus_received\t\n\tapparent_energy_delivered_plus_received\t\n\tapparentpowera\n\tapparentpowerb\n\tapparentpowerc\n\tapparentpowertotal\n\tblock\n\tcurrenta\n\tcurrentavg\n\tcurrentb\n\tcurrentc\n\tcurrentn\n\tdate_time\n\tdate_time_offset\n\tdevice_id\n\tfrequency\n\tid\n\tindex\n\tlastdemand_1\n\tlastdemand_2\n\tlastdemand_3\n\tlastdemand_8\n\tmain\n\tname\n\tpeakdemand_1\n\tpeakdemand_2\n\tpeakdemand_3\n\tpeakdemand_8\n\tpeakdemanddatetime_1\n\tpeakdemanddatetime_2\n\tpeakdemanddatetime_3\n\tpeakdemanddatetime_8\n\tpowerfactora\n\tpowerfactorb\n\tpowerfactorc\n\tpowerfactortotal\n\tpredictdemand_1\t\n\tpredictdemand_2\n\tpredictdemand_3\t\n\tpredictdemand_8\n\tpresentdemand_1\t\n\tpresentdemand_2\t\n\tpresentdemand_3\t\n\tpresentdemand_8\t\n\treactive_energy_delivered\n\treactive_energy_delivered_minus_received\n\treactive_energy_delivered_plus_received\n\treactive_energy_received\n\treactivepowera\n\treactivepowerb\n\treactivepowerc\n\treactivepowertotal\n\tthd_current_a\n\tthd_current_b\n\tthd_current_c\n\tthd_current_g\n\tthd_current_n\n\tthd_voltage_ab\t\n\tthd_voltage_an\n\tthd_voltage_bc\n\tthd_voltage_bn\n\tthd_voltage_ca\n\tthd_voltage_cn\n\tthd_voltage_ll\n\tthd_voltage_ln\n\tvoltagea_b\n\tvoltagea_n\n\tvoltageb_c\n\tvoltageb_n\n\tvoltagec_a\n\tvoltagec_n\n\tvoltagel_lavg\n\n",
+      "text": "%pyspark\n# does not work\nrdd \u003d sc.textFile(\"test.csv\")\ndf \u003d rdd.map(lambda x : x.split(\u0027,\u0027) ).map(lambda x : { \u0027A\u0027: x[0].strip(), \u0027B\u0027: x[1].strip(),\u0027C\u0027: x[2].strip()}).toDF()\n#df.write.parquet(\"data/test.parquet\")\n",
       "user": "instruct",
-      "dateUpdated": "2019-10-11 06:15:11.509",
+      "dateUpdated": "2019-10-15 01:29:10.485",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
         "editorSetting": {
-          "language": "scala",
+          "language": "python",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 2: df \u003d rdd.map(lambda x : x.split(\u0027,\u0027) ).map(lambda x : { \u0027A\u0027: x[0].strip(), \u0027B\u0027: x[1].strip(),\u0027C\u0027: x[2].strip()}).toDF()\nTraceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-8099555934267942636.py\", line 380, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 2, in \u003cmodule\u003e\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/session.py\", line 57, in toDF\n    return sparkSession.createDataFrame(self, schema, sampleRatio)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/session.py\", line 535, in createDataFrame\n    rdd, schema \u003d self._createFromRDD(data.map(prepare), schema, samplingRatio)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/session.py\", line 375, in _createFromRDD\n    struct \u003d self._inferSchema(rdd, samplingRatio)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/session.py\", line 346, in _inferSchema\n    first \u003d rdd.first()\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/rdd.py\", line 1361, in first\n    rs \u003d self.take(1)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/rdd.py\", line 1343, in take\n    res \u003d self.context.runJob(self, takeUpToNumLeft, p)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/context.py\", line 992, in runJob\n    port \u003d self._jvm.PythonRDD.runJob(self._jsc.sc(), mappedRDD._jrdd, partitions)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 1131, in __call__\n    answer \u003d self.gateway_client.send_command(command)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 883, in send_command\n    response \u003d connection.send_command(command)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 1028, in send_command\n    answer \u003d smart_decode(self.stream.readline()[:-1])\n  File \"/opt/conda/lib/python2.7/socket.py\", line 451, in readline\n    data \u003d self._sock.recv(self._rbufsize)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/context.py\", line 237, in signal_handler\n    raise KeyboardInterrupt()\nKeyboardInterrupt\n"
+          }
+        ]
+      },
       "apps": [],
-      "jobName": "paragraph_1570774081421_2136742930",
-      "id": "20191011-060801_594321133",
-      "dateCreated": "2019-10-11 06:08:01.421",
-      "status": "READY",
+      "jobName": "paragraph_1570772018547_1455777737",
+      "id": "20191011-053338_862471810",
+      "dateCreated": "2019-10-11 05:33:38.547",
+      "dateStarted": "2019-10-15 01:08:29.270",
+      "dateFinished": "2019-10-15 01:08:37.042",
+      "status": "ABORT",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "//http://trimc-devops.blogspot.com/2016/05/from-raw-csv-to-pyspark-on-zeppelin.html\n//https://www.analyticsvidhya.com/blog/2016/10/spark-dataframe-and-operations/\n//https://stackoverflow.com/questions/28782940/load-csv-file-with-spark",
+      "text": "//http://trimc-devops.blogspot.com/2016/05/from-raw-csv-to-pyspark-on-zeppelin.html\n//https://www.analyticsvidhya.com/blog/2016/10/spark-dataframe-and-operations/\n//https://stackoverflow.com/questions/28782940/load-csv-file-with-spark\n//https://www.zepl.com/viewer/notebooks/bm90ZTovL21vb24vM2E0ZTk5Y2U1ZmNiNGQ3NGE1YTZkZTMzMTQxNjE1NWYvbm90ZS5qc29u",
       "user": "instruct",
-      "dateUpdated": "2019-10-11 06:04:39.183",
+      "dateUpdated": "2019-10-11 06:45:22.036",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
@@ -139,9 +158,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%pyspark\nfrom pyspark.sql.types import StructType, StructField\nfrom pyspark.sql.types import DoubleType, IntegerType, StringType\n\nschema \u003d StructType([\n    StructField(\"A\", IntegerType()),\n    StructField(\"B\", DoubleType()),\n    StructField(\"C\", StringType())\n])\n\n\n\ndf\u003d sqlContext.read.csv(\"test.csv\", header\u003dTrue, mode\u003d\"DROPMALFORMED\", schema\u003dschema)\ndf.printSchema()\ndf\n\n\nprint(df.describe())",
+      "text": "%pyspark\nfrom pyspark.sql.types import StructType, StructField\nfrom pyspark.sql.types import DoubleType, IntegerType, StringType\n\nschema \u003d StructType([\n    \n    StructField(\"transaction\", IntegerType()), #0\n    StructField(\"active_energy_delivered_into_load\", IntegerType()),\n\tStructField(\"active_energy_delivered_minus_received\", IntegerType()),\n\tStructField(\"active_energy_delivered_plus_received\", IntegerType()),\n\tStructField(\"active_energy_received_out_of_load\", IntegerType()),\n\tStructField(\"activepowera\", DoubleType()),\n\tStructField(\"activepowerb\", DoubleType()),\n\tStructField(\"activepowerc\", DoubleType()),\n\tStructField(\"activepowertotal\", DoubleType()),\n\tStructField(\"apparent_energy_deceived\", IntegerType()),\n\tStructField(\"apparent_energy_delivered\", IntegerType()), #10\n\tStructField(\"apparent_energy_delivered_minus_received\", IntegerType()),\n\tStructField(\"apparent_energy_delivered_plus_received\", IntegerType()),\n\tStructField(\"apparentpowera\", DoubleType()),\n\tStructField(\"apparentpowerb\", DoubleType()),\n\tStructField(\"apparentpowerc\", DoubleType()),\n\tStructField(\"apparentpowertotal\", DoubleType()),\n\tStructField(\"block\", StringType()),\n\tStructField(\"currenta\", DoubleType()),\n\tStructField(\"currentavg\", DoubleType()),\n\tStructField(\"currentb\", DoubleType()), #20\n\tStructField(\"currentc\", DoubleType()),\n\tStructField(\"currentn\", DoubleType()),\n\tStructField(\"date_time\", StringType()),\n\tStructField(\"date_time_offset\", StringType()),\n\tStructField(\"device_id\", IntegerType()),\n\tStructField(\"frequency\", DoubleType()),\n\tStructField(\"id\", IntegerType()),\n\tStructField(\"index\", IntegerType()),\n\tStructField(\"lastdemand_1\", DoubleType()),\n\tStructField(\"lastdemand_2\", DoubleType()), #30\n\tStructField(\"lastdemand_3\", DoubleType()),\n\tStructField(\"lastdemand_8\", DoubleType()),\n\tStructField(\"main\", StringType()),\n\tStructField(\"name\", StringType()),\n\tStructField(\"peakdemand_1\", DoubleType()),\n\tStructField(\"peakdemand_2\", DoubleType()),\n\tStructField(\"peakdemand_3\", DoubleType()),\n\tStructField(\"peakdemand_8\", DoubleType()),\n\tStructField(\"peakdemanddatetime_1\", StringType()), \n\tStructField(\"peakdemanddatetime_2\", StringType()), #40\n\tStructField(\"peakdemanddatetime_3\", StringType()),\n\tStructField(\"peakdemanddatetime_8\", StringType()),\n\tStructField(\"powerfactora\", DoubleType()),\n\tStructField(\"powerfactorb\", DoubleType()),\n\tStructField(\"powerfactorc\", DoubleType()),\n\tStructField(\"powerfactortotal\", DoubleType()),\n\tStructField(\"predictdemand_1\", DoubleType()),\n\tStructField(\"predictdemand_2\", DoubleType()),\n\tStructField(\"predictdemand_3\", DoubleType()),\n\tStructField(\"predictdemand_8\", DoubleType()), #50\n\tStructField(\"presentdemand_1\", DoubleType()),\n\tStructField(\"presentdemand_2\", DoubleType()),\n\tStructField(\"presentdemand_3\", DoubleType()),\n\tStructField(\"presentdemand_8\", DoubleType()),\n\tStructField(\"reactive_energy_delivered\", IntegerType()),\n\tStructField(\"reactive_energy_delivered_minus_received\", IntegerType()),\n\tStructField(\"reactive_energy_delivered_plus_received\", IntegerType()),\n\tStructField(\"reactive_energy_received\", IntegerType()),\n\tStructField(\"reactivepowera\", DoubleType()),\n\tStructField(\"reactivepowerb\", DoubleType()),  #60\n\tStructField(\"reactivepowerc\", DoubleType()),\n\tStructField(\"reactivepowertotal\", DoubleType()),\n\tStructField(\"thd_current_a\", DoubleType()),\n\tStructField(\"thd_current_b\", DoubleType()),\n\tStructField(\"thd_current_c\", DoubleType()),\n\tStructField(\"thd_current_g\", DoubleType()),\n\tStructField(\"thd_current_n\", DoubleType()),\n\tStructField(\"thd_voltage_ab\", DoubleType()),\n\tStructField(\"thd_voltage_an\", DoubleType()),\n\tStructField(\"thd_voltage_bc\", DoubleType()), #70\n\tStructField(\"thd_voltage_bn\", DoubleType()),\n\tStructField(\"thd_voltage_ca\", DoubleType()),\n\tStructField(\"thd_voltage_cn\", DoubleType()),\n\tStructField(\"thd_voltage_ll\", DoubleType()),\n\tStructField(\"thd_voltage_ln\", DoubleType()),\n\tStructField(\"voltagea_b\", DoubleType()),\n\tStructField(\"voltagea_n\", DoubleType()),\n\tStructField(\"voltageb_c\", DoubleType()),\n\tStructField(\"voltageb_n\", DoubleType()),\n\tStructField(\"voltagec_a\", DoubleType()), #80\n\tStructField(\"voltagec_n\", DoubleType()),\n\tStructField(\"voltagel_lavg\", DoubleType()) \n    \n])\n\ndf\u003d sqlContext.read.csv(\"data/export30hr.csv\", header\u003dTrue, mode\u003d\"DROPMALFORMED\", schema\u003dschema)\ndf.printSchema()\n\nprint(df.describe())",
       "user": "instruct",
-      "dateUpdated": "2019-10-11 06:12:54.632",
+      "dateUpdated": "2019-10-15 01:17:31.101",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -164,48 +183,79 @@
         "msg": [
           {
             "type": "TEXT",
+            "data": "root\n |-- transaction: integer (nullable \u003d true)\n |-- active_energy_delivered_into_load: integer (nullable \u003d true)\n |-- active_energy_delivered_minus_received: integer (nullable \u003d true)\n |-- active_energy_delivered_plus_received: integer (nullable \u003d true)\n |-- active_energy_received_out_of_load: integer (nullable \u003d true)\n |-- activepowera: double (nullable \u003d true)\n |-- activepowerb: double (nullable \u003d true)\n |-- activepowerc: double (nullable \u003d true)\n |-- activepowertotal: double (nullable \u003d true)\n |-- apparent_energy_deceived: integer (nullable \u003d true)\n |-- apparent_energy_delivered: integer (nullable \u003d true)\n |-- apparent_energy_delivered_minus_received: integer (nullable \u003d true)\n |-- apparent_energy_delivered_plus_received: integer (nullable \u003d true)\n |-- apparentpowera: double (nullable \u003d true)\n |-- apparentpowerb: double (nullable \u003d true)\n |-- apparentpowerc: double (nullable \u003d true)\n |-- apparentpowertotal: double (nullable \u003d true)\n |-- block: string (nullable \u003d true)\n |-- currenta: double (nullable \u003d true)\n |-- currentavg: double (nullable \u003d true)\n |-- currentb: double (nullable \u003d true)\n |-- currentc: double (nullable \u003d true)\n |-- currentn: double (nullable \u003d true)\n |-- date_time: string (nullable \u003d true)\n |-- date_time_offset: string (nullable \u003d true)\n |-- device_id: integer (nullable \u003d true)\n |-- frequency: double (nullable \u003d true)\n |-- id: integer (nullable \u003d true)\n |-- index: integer (nullable \u003d true)\n |-- lastdemand_1: double (nullable \u003d true)\n |-- lastdemand_2: double (nullable \u003d true)\n |-- lastdemand_3: double (nullable \u003d true)\n |-- lastdemand_8: double (nullable \u003d true)\n |-- main: string (nullable \u003d true)\n |-- name: string (nullable \u003d true)\n |-- peakdemand_1: double (nullable \u003d true)\n |-- peakdemand_2: double (nullable \u003d true)\n |-- peakdemand_3: double (nullable \u003d true)\n |-- peakdemand_8: double (nullable \u003d true)\n |-- peakdemanddatetime_1: string (nullable \u003d true)\n |-- peakdemanddatetime_2: string (nullable \u003d true)\n |-- peakdemanddatetime_3: string (nullable \u003d true)\n |-- peakdemanddatetime_8: string (nullable \u003d true)\n |-- powerfactora: double (nullable \u003d true)\n |-- powerfactorb: double (nullable \u003d true)\n |-- powerfactorc: double (nullable \u003d true)\n |-- powerfactortotal: double (nullable \u003d true)\n |-- predictdemand_1: double (nullable \u003d true)\n |-- predictdemand_2: double (nullable \u003d true)\n |-- predictdemand_3: double (nullable \u003d true)\n |-- predictdemand_8: double (nullable \u003d true)\n |-- presentdemand_1: double (nullable \u003d true)\n |-- presentdemand_2: double (nullable \u003d true)\n |-- presentdemand_3: double (nullable \u003d true)\n |-- presentdemand_8: double (nullable \u003d true)\n |-- reactive_energy_delivered: integer (nullable \u003d true)\n |-- reactive_energy_delivered_minus_received: integer (nullable \u003d true)\n |-- reactive_energy_delivered_plus_received: integer (nullable \u003d true)\n |-- reactive_energy_received: integer (nullable \u003d true)\n |-- reactivepowera: double (nullable \u003d true)\n |-- reactivepowerb: double (nullable \u003d true)\n |-- reactivepowerc: double (nullable \u003d true)\n |-- reactivepowertotal: double (nullable \u003d true)\n |-- thd_current_a: double (nullable \u003d true)\n |-- thd_current_b: double (nullable \u003d true)\n |-- thd_current_c: double (nullable \u003d true)\n |-- thd_current_g: double (nullable \u003d true)\n |-- thd_current_n: double (nullable \u003d true)\n |-- thd_voltage_ab: double (nullable \u003d true)\n |-- thd_voltage_an: double (nullable \u003d true)\n |-- thd_voltage_bc: double (nullable \u003d true)\n |-- thd_voltage_bn: double (nullable \u003d true)\n |-- thd_voltage_ca: double (nullable \u003d true)\n |-- thd_voltage_cn: double (nullable \u003d true)\n |-- thd_voltage_ll: double (nullable \u003d true)\n |-- thd_voltage_ln: double (nullable \u003d true)\n |-- voltagea_b: double (nullable \u003d true)\n |-- voltagea_n: double (nullable \u003d true)\n |-- voltageb_c: double (nullable \u003d true)\n |-- voltageb_n: double (nullable \u003d true)\n |-- voltagec_a: double (nullable \u003d true)\n |-- voltagec_n: double (nullable \u003d true)\n |-- voltagel_lavg: double (nullable \u003d true)\n\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 95: print(df.describe())\nTraceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-8099555934267942636.py\", line 380, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 95, in \u003cmodule\u003e\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/dataframe.py\", line 949, in describe\n    jdf \u003d self._jdf.describe(self._jseq(cols))\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 1131, in __call__\n    answer \u003d self.gateway_client.send_command(command)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 883, in send_command\n    response \u003d connection.send_command(command)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 1028, in send_command\n    answer \u003d smart_decode(self.stream.readline()[:-1])\n  File \"/opt/conda/lib/python2.7/socket.py\", line 451, in readline\n    data \u003d self._sock.recv(self._rbufsize)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/context.py\", line 237, in signal_handler\n    raise KeyboardInterrupt()\nKeyboardInterrupt\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1571101729126_-707610267",
+      "id": "20191015-010849_24528089",
+      "dateCreated": "2019-10-15 01:08:49.126",
+      "dateStarted": "2019-10-15 01:17:31.117",
+      "dateFinished": "2019-10-15 01:27:00.363",
+      "status": "ABORT",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql.types import StructType, StructField\nfrom pyspark.sql.types import DoubleType, IntegerType, StringType\n\nschema \u003d StructType([\n    StructField(\"A\", IntegerType()),\n    StructField(\"B\", DoubleType()),\n    StructField(\"C\", StringType())\n])\n\n\n\ndf\u003d sqlContext.read.csv(\"test.csv\", header\u003dTrue, mode\u003d\"DROPMALFORMED\", schema\u003dschema)\ndf.printSchema()\n\ndf.head()\n#print(df.describe())",
+      "user": "instruct",
+      "dateUpdated": "2019-10-15 01:28:44.443",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
             "data": "root\n |-- A: integer (nullable \u003d true)\n |-- B: double (nullable \u003d true)\n |-- C: string (nullable \u003d true)\n\n"
           },
           {
             "type": "TEXT",
-            "data": "Py4JJavaError: An error occurred while calling o1604.describe.\n: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 30.0 failed 1 times, most recent failure: Lost task 0.0 in stage 30.0 (TID 30, localhost, executor driver): java.lang.NoSuchMethodError: org.apache.hadoop.fs.FileSystem$Statistics.getThreadStatistics()Lorg/apache/hadoop/fs/FileSystem$Statistics$StatisticsData;\n\tat org.apache.spark.deploy.SparkHadoopUtil$$anonfun$1$$anonfun$apply$mcJ$sp$1.apply(SparkHadoopUtil.scala:149)\n\tat org.apache.spark.deploy.SparkHadoopUtil$$anonfun$1$$anonfun$apply$mcJ$sp$1.apply(SparkHadoopUtil.scala:149)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.Iterator$class.foreach(Iterator.scala:893)\n\tat scala.collection.AbstractIterator.foreach(Iterator.scala:1336)\n\tat scala.collection.IterableLike$class.foreach(IterableLike.scala:72)\n\tat scala.collection.AbstractIterable.foreach(Iterable.scala:54)\n\tat scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n\tat scala.collection.AbstractTraversable.map(Traversable.scala:104)\n\tat org.apache.spark.deploy.SparkHadoopUtil$$anonfun$1.apply$mcJ$sp(SparkHadoopUtil.scala:149)\n\tat org.apache.spark.deploy.SparkHadoopUtil.getFSBytesReadOnThreadCallback(SparkHadoopUtil.scala:150)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.\u003cinit\u003e(FileScanRDD.scala:78)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD.compute(FileScanRDD.scala:71)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:108)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n\nDriver stacktrace:\n\tat org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1499)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1487)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$abortStage$1.apply(DAGScheduler.scala:1486)\n\tat scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n\tat scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n\tat org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:1486)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$handleTaskSetFailed$1.apply(DAGScheduler.scala:814)\n\tat scala.Option.foreach(Option.scala:257)\n\tat org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:814)\n\tat org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1714)\n\tat org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1669)\n\tat org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1658)\n\tat org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n\tat org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:630)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:2022)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:2043)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:2062)\n\tat org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:336)\n\tat org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n\tat org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collectFromPlan(Dataset.scala:2853)\n\tat org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2153)\n\tat org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2153)\n\tat org.apache.spark.sql.Dataset$$anonfun$55.apply(Dataset.scala:2837)\n\tat org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:65)\n\tat org.apache.spark.sql.Dataset.withAction(Dataset.scala:2836)\n\tat org.apache.spark.sql.Dataset.head(Dataset.scala:2153)\n\tat org.apache.spark.sql.Dataset.head(Dataset.scala:2160)\n\tat org.apache.spark.sql.Dataset$$anonfun$describe$1.apply(Dataset.scala:2126)\n\tat org.apache.spark.sql.Dataset$$anonfun$describe$1.apply(Dataset.scala:2108)\n\tat org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$withPlan(Dataset.scala:2872)\n\tat org.apache.spark.sql.Dataset.describe(Dataset.scala:2108)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)\n\tat py4j.Gateway.invoke(Gateway.java:280)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:214)\n\tat java.lang.Thread.run(Thread.java:748)\nCaused by: java.lang.NoSuchMethodError: org.apache.hadoop.fs.FileSystem$Statistics.getThreadStatistics()Lorg/apache/hadoop/fs/FileSystem$Statistics$StatisticsData;\n\tat org.apache.spark.deploy.SparkHadoopUtil$$anonfun$1$$anonfun$apply$mcJ$sp$1.apply(SparkHadoopUtil.scala:149)\n\tat org.apache.spark.deploy.SparkHadoopUtil$$anonfun$1$$anonfun$apply$mcJ$sp$1.apply(SparkHadoopUtil.scala:149)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n\tat scala.collection.Iterator$class.foreach(Iterator.scala:893)\n\tat scala.collection.AbstractIterator.foreach(Iterator.scala:1336)\n\tat scala.collection.IterableLike$class.foreach(IterableLike.scala:72)\n\tat scala.collection.AbstractIterable.foreach(Iterable.scala:54)\n\tat scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n\tat scala.collection.AbstractTraversable.map(Traversable.scala:104)\n\tat org.apache.spark.deploy.SparkHadoopUtil$$anonfun$1.apply$mcJ$sp(SparkHadoopUtil.scala:149)\n\tat org.apache.spark.deploy.SparkHadoopUtil.getFSBytesReadOnThreadCallback(SparkHadoopUtil.scala:150)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD$$anon$1.\u003cinit\u003e(FileScanRDD.scala:78)\n\tat org.apache.spark.sql.execution.datasources.FileScanRDD.compute(FileScanRDD.scala:71)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)\n\tat org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)\n\tat org.apache.spark.rdd.RDD.iterator(RDD.scala:287)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)\n\tat org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)\n\tat org.apache.spark.scheduler.Task.run(Task.scala:108)\n\tat org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\t... 1 more\n\n(\u003cclass \u0027py4j.protocol.Py4JJavaError\u0027\u003e, Py4JJavaError(u\u0027An error occurred while calling o1604.describe.\\n\u0027, JavaObject id\u003do1608), \u003ctraceback object at 0x7fb8b9e019e0\u003e)"
+            "data": "Fail to execute line 15: df.head()\nTraceback (most recent call last):\n  File \"/tmp/zeppelin_pyspark-8099555934267942636.py\", line 380, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 15, in \u003cmodule\u003e\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/dataframe.py\", line 970, in head\n    rs \u003d self.head(1)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/dataframe.py\", line 972, in head\n    return self.take(n)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/dataframe.py\", line 476, in take\n    return self.limit(num).collect()\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/sql/dataframe.py\", line 438, in collect\n    port \u003d self._jdf.collectToPython()\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 1131, in __call__\n    answer \u003d self.gateway_client.send_command(command)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 883, in send_command\n    response \u003d connection.send_command(command)\n  File \"/zeppelin/interpreter/spark/pyspark/py4j-0.10.4-src.zip/py4j/java_gateway.py\", line 1028, in send_command\n    answer \u003d smart_decode(self.stream.readline()[:-1])\n  File \"/opt/conda/lib/python2.7/socket.py\", line 451, in readline\n    data \u003d self._sock.recv(self._rbufsize)\n  File \"/zeppelin/interpreter/spark/pyspark/pyspark.zip/pyspark/context.py\", line 237, in signal_handler\n    raise KeyboardInterrupt()\nKeyboardInterrupt\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.4:4040/jobs/job?id\u003d30"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1570605613521_-428519847",
       "id": "20191009-072013_839900500",
       "dateCreated": "2019-10-09 07:20:13.521",
-      "dateStarted": "2019-10-11 06:02:02.150",
-      "dateFinished": "2019-10-11 06:02:02.672",
-      "status": "ERROR",
+      "dateStarted": "2019-10-15 01:28:44.458",
+      "dateFinished": "2019-10-15 01:29:10.670",
+      "status": "ABORT",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark.pyspark\n",
+      "text": "%pyspark\n",
       "user": "instruct",
-      "dateUpdated": "2019-10-11 05:22:13.752",
+      "dateUpdated": "2019-10-15 01:27:33.604",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1570771333751_1247431068",
-      "id": "20191011-052213_810407853",
-      "dateCreated": "2019-10-11 05:22:13.751",
+      "jobName": "paragraph_1571102853604_597318194",
+      "id": "20191015-012733_870562259",
+      "dateCreated": "2019-10-15 01:27:33.604",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
@@ -218,6 +268,7 @@
     "spark:shared_process": []
   },
   "config": {
+    "personalizedMode": "true",
     "isZeppelinNotebookCronEnable": false
   },
   "info": {}
