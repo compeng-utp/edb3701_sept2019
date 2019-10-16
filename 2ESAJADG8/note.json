@@ -122,9 +122,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),1)\n        \n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),10)\n        \n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
       "user": "instruct",
-      "dateUpdated": "2019-10-15 06:02:02.034",
+      "dateUpdated": "2019-10-16 07:44:49.214",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -143,21 +143,33 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\njava.lang.OutOfMemoryError: Java heap space\n  at java.util.Arrays.copyOf(Arrays.java:3332)\n  at java.lang.AbstractStringBuilder.ensureCapacityInternal(AbstractStringBuilder.java:124)\n  at java.lang.AbstractStringBuilder.append(AbstractStringBuilder.java:596)\n  at java.lang.StringBuilder.append(StringBuilder.java:190)\n  at org.apache.commons.io.output.StringBuilderWriter.write(StringBuilderWriter.java:138)\n  at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:2002)\n  at org.apache.commons.io.IOUtils.copyLarge(IOUtils.java:1980)\n  at org.apache.commons.io.IOUtils.copy(IOUtils.java:1957)\n  at org.apache.commons.io.IOUtils.copy(IOUtils.java:1907)\n  at org.apache.commons.io.IOUtils.toString(IOUtils.java:778)\n  at org.apache.commons.io.IOUtils.toString(IOUtils.java:896)\n  ... 21 elided\n"
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\ntxt: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[0] at parallelize at \u003cconsole\u003e:31\nres6: Int \u003d 3173502\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.3:4040/jobs/job?id\u003d0"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1571118656270_-99789984",
       "id": "20191015-025600_438924703",
       "dateCreated": "2019-10-15 05:50:56.270",
-      "dateStarted": "2019-10-15 06:02:02.053",
-      "dateFinished": "2019-10-15 06:02:04.469",
-      "status": "ERROR",
+      "dateStarted": "2019-10-16 07:44:50.023",
+      "dateFinished": "2019-10-16 07:45:34.178",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -404,7 +416,6 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
-    "python:shared_process": [],
     "angular:shared_process": [],
     "spark:shared_process": []
   },
