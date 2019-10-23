@@ -1,0 +1,73 @@
+{
+  "paragraphs": [
+    {
+      "text": "%r\n\n#Assignment 1 - Lab2 Data Visualization\n# Ng Wei Bhing 24897\n# Muhammad Fathy Rashad 25547\n# Muhammmad Fahim bin Mohd Jailani 24863\n\n\n# Use Sepal Length and Width to predicts flower species\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003d\"glm\", se\u003dFALSE, fullrange\u003dTRUE) + # Regression Lines\n  stat_ellipse()\n\n# Add clustering/ draw circles\np \u003c- ggplot(iris, aes(Sepal.Length, Sepal.Width, color \u003d Species)) +\n  geom_point()",
+      "user": "24897",
+      "dateUpdated": "2019-10-23 13:42:58.968",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sparkR backend is dead, please try to increase spark.r.backendConnectionTimeout"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1571838042008_-945804846",
+      "id": "20191023-134042_521064185",
+      "dateCreated": "2019-10-23 13:40:42.008",
+      "dateStarted": "2019-10-23 13:42:58.983",
+      "dateFinished": "2019-10-23 13:42:59.017",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n",
+      "user": "24897",
+      "dateUpdated": "2019-10-23 13:40:51.021",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1571838051020_-164110431",
+      "id": "20191023-134051_1566361286",
+      "dateCreated": "2019-10-23 13:40:51.020",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "24897_assignment1_logistic_regression",
+  "id": "2ETEP6WP1",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
