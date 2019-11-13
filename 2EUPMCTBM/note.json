@@ -1,0 +1,112 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.r\nlibrary(ggplot2)\ndata(iris)\n\n#read the data set (Question 1)\nView(iris)\nsummary(iris)\n\n\niris.newFeatures \u003c- iris\niris.newFeatures$Species \u003c- NULL\nView(iris.newFeatures)\n\n#cluster into 3 groups using kmeans\nresult \u003c- kmeans(iris.newFeatures, 3)  #get available attributes based on variables in data set (Question 2)\nView(result)\n\nplot (iris.newFeatures [c(\"Petal.Length\",\"Petal.Width\")],col \u003d result$cluster)\n\n#showing in ggplot\nggplot(iris.newFeatures, aes(x \u003d Petal.Length, y \u003d Petal.Width, colour \u003d result$cluster)) + \n geom_point() +\n stat_ellipse() +\n ggtitle(\u0027Iris Species by Petal length and Petal Width\u0027)",
+      "user": "24899",
+      "dateUpdated": "2019-11-13 10:39:49.043",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sparkR backend is dead, please try to increase spark.r.backendConnectionTimeout"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573641549573_121728742",
+      "id": "20191113-103909_1262363520",
+      "dateCreated": "2019-11-13 10:39:09.573",
+      "dateStarted": "2019-11-13 10:39:49.053",
+      "dateFinished": "2019-11-13 10:39:49.061",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.r\nlibrary(ggplot2)\n\n#Run Separately (Question 3)\n\n#cluster based on each \u0027class\u0027\n#Sample cluster 1\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Petal.Width, colour \u003d Species)) + \n  geom_point() +\n  stat_ellipse() +\n  ggtitle(\u0027Iris Species by Petal length and Petal Width\u0027)\n\n\n#Sample cluster 2\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Sepal.Width, colour \u003d Species)) + \n  geom_point() +\n  stat_ellipse() +\n  ggtitle(\u0027Iris Species by Petal length and Sepal Width\u0027)",
+      "user": "24899",
+      "dateUpdated": "2019-11-13 10:39:59.403",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sparkR backend is dead, please try to increase spark.r.backendConnectionTimeout"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573641589043_274599165",
+      "id": "20191113-103949_872469516",
+      "dateCreated": "2019-11-13 10:39:49.043",
+      "dateStarted": "2019-11-13 10:39:59.412",
+      "dateFinished": "2019-11-13 10:39:59.419",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.r\n",
+      "user": "24899",
+      "dateUpdated": "2019-11-13 10:39:59.404",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573641599403_508238903",
+      "id": "20191113-103959_901198214",
+      "dateCreated": "2019-11-13 10:39:59.403",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "assignment_1_24899",
+  "id": "2EUPMCTBM",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
