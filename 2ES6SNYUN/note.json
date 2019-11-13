@@ -1,0 +1,90 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.r\nlibrary(ggplot2)\ndata(iris)\n\n#read the data set (Question 1)\nView(iris)\nsummary(iris)\n\n\niris.newFeatures \u003c- iris\niris.newFeatures$Species \u003c- NULL\nView(iris.newFeatures)\n\n#cluster into 3 groups using kmeans\nresult \u003c- kmeans(iris.newFeatures, 3)  #get available attributes based on variables in data set (Question 2)\nView(result)\n\nplot (iris.newFeatures [c(\"Petal.Length\",\"Petal.Width\")],col \u003d result$cluster)\n\n#showing in ggplot\nggplot(iris.newFeatures, aes(x \u003d Petal.Length, y \u003d Petal.Width, colour \u003d result$cluster)) + \n geom_point() +\n stat_ellipse() +\n ggtitle(\u0027Iris Species by Petal length and Petal Width\u0027)",
+      "user": "24874",
+      "dateUpdated": "2019-11-13 17:19:32.025",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573665540996_1560349483",
+      "id": "20191113-171900_117905383",
+      "dateCreated": "2019-11-13 17:19:00.996",
+      "status": "PENDING",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.r\nlibrary(ggplot2)\n\n#Run Separately (Question 3)\n\n#cluster based on each \u0027class\u0027\n#Sample cluster 1\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Petal.Width, colour \u003d Species)) + \n  geom_point() +\n  stat_ellipse() +\n  ggtitle(\u0027Iris Species by Petal length and Petal Width\u0027)\n\n\n#Sample cluster 2\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Sepal.Width, colour \u003d Species)) + \n  geom_point() +\n  stat_ellipse() +\n  ggtitle(\u0027Iris Species by Petal length and Sepal Width\u0027)",
+      "user": "24874",
+      "dateUpdated": "2019-11-13 17:19:57.403",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573665572025_1219415791",
+      "id": "20191113-171932_938982634",
+      "dateCreated": "2019-11-13 17:19:32.025",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.r\n",
+      "user": "24874",
+      "dateUpdated": "2019-11-13 17:19:57.404",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573665597404_1365256666",
+      "id": "20191113-171957_1666978853",
+      "dateCreated": "2019-11-13 17:19:57.404",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Assignment 1_24874",
+  "id": "2ES6SNYUN",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
