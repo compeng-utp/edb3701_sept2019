@@ -1,0 +1,60 @@
+{
+  "paragraphs": [
+    {
+      "text": "#Question 1\n#What is the size of the file, activepowertotal.csv\n\n%spark.R\nimport org.apache.spark.util.SizeEstimator\nprintln(SizeEstimator.estimate(activepowertotal.csv))",
+      "user": "24899",
+      "dateUpdated": "2019-11-13 16:12:52.101",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573660347761_14983848",
+      "id": "20191113-155227_2000135716",
+      "dateCreated": "2019-11-13 15:52:27.761",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "24899",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573661572101_-573035514",
+      "id": "20191113-161252_1360230155",
+      "dateCreated": "2019-11-13 16:12:52.102",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "24899_1",
+  "id": "2ES256U36",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
