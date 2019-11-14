@@ -1,0 +1,46 @@
+{
+  "paragraphs": [
+    {
+      "text": "% r\nlibrary(ggplot2)\n\n# Use Sepal length and Sepal width to predict the species from IRIS dataset\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003dlm, se\u003dFALSE, fullrange\u003dTRUE) + # Regression lines\n  stat_ellipse() # Draw circle for clustering",
+      "user": "24863",
+      "dateUpdated": "2019-11-14 00:30:18.924",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573691068355_-239201732",
+      "id": "20191114-002428_680884761",
+      "dateCreated": "2019-11-14 00:24:28.355",
+      "status": "PENDING",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "24863_Assignment1",
+  "id": "2ETR7NWHW",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
