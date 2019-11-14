@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "% r\nlibrary(ggplot2)\n\n# Use Sepal length and Sepal width to predict the species from IRIS dataset\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003dlm, se\u003dFALSE, fullrange\u003dTRUE) + # Regression lines\n  stat_ellipse() # Draw circle for clustering",
+      "text": "% r\nlibrary(ggplot2)\n\n# Use Sepal Length and Width to predicts flower species\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003d\"glm\", se\u003dFALSE, fullrange\u003dTRUE) + # Regression Lines\n  stat_ellipse()\n\n# Add clustering/ draw circles\np \u003c- ggplot(iris, aes(Sepal.Length, Sepal.Width, color \u003d Species)) +\n  geom_point()",
       "user": "24863",
-      "dateUpdated": "2019-11-14 00:30:18.924",
+      "dateUpdated": "2019-11-14 00:35:19.763",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -25,7 +25,7 @@
       "jobName": "paragraph_1573691068355_-239201732",
       "id": "20191114-002428_680884761",
       "dateCreated": "2019-11-14 00:24:28.355",
-      "status": "PENDING",
+      "status": "ABORT",
       "progressUpdateIntervalMs": 500
     }
   ],
