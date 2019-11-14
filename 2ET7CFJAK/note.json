@@ -1,0 +1,196 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\r\nlibrary(caret)\r\nlibrary(lattice)\r\nlibrary(ggplot2)\r\n#attach iris dataset to the  environment\r\ndata(iris)\r\n#rename the iris dataset\r\ndataset \u003c- iris",
+      "user": "17009703",
+      "dateUpdated": "2019-11-14 01:41:29.081",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:33: error: not found: value library\n       library(caret)\n       ^\n\u003cconsole\u003e:33: error: not found: value caret\n       library(caret)\n               ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695500845_-1044747311",
+      "id": "20191114-013820_1592666900",
+      "dateCreated": "2019-11-14 01:38:20.845",
+      "dateStarted": "2019-11-14 01:41:29.097",
+      "dateFinished": "2019-11-14 01:41:29.124",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n#Create a list of 80% of the rows in the original dataset used for training\nvalidationIndex \u003c- createDataPartition(dataset$Species , p\u003d0.80 , list\u003dFALSE)\n#make 20% dataset for validation purpose\nvalidation \u003c- dataset[-validationIndex,]\n#use remaining 80% of data to train and test the model\ndataset \u003c- dataset[validationIndex,]\n#dimension of updated dataset\ndim(dataset)\n#list types for each attribute\nsapply(dataset,class)",
+      "user": "17009703",
+      "dateUpdated": "2019-11-14 01:41:01.951",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695540030_-1739689388",
+      "id": "20191114-013900_26552870",
+      "dateCreated": "2019-11-14 01:39:00.030",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n#peek at first few values\nhead(dataset)\n#listing levels for each class\nlevels(dataset$Species)\n#summarize the class distribution\npercentage \u003c- prop.table(table(dataset$Species)) * 100\ncbind(freq\u003dtable(dataset$Species) , percentage \u003d percentage)\n#summarize attribute distributions\nsummary(dataset)",
+      "user": "17009703",
+      "dateUpdated": "2019-11-14 01:41:06.152",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695580709_1538096367",
+      "id": "20191114-013940_168708825",
+      "dateCreated": "2019-11-14 01:39:40.709",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n#split input and output\nx \u003c- dataset[,1:4] \ny \u003c- dataset[,5]\n#scatterplot matrix\nfeaturePlot( x\u003dx , y\u003dy , plot \u003d \"ellipse\")\n# Run algorithms using 10-fold cross validation\ntrainControl \u003c- trainControl(method\u003d\"cv\", number\u003d10) \nmetric \u003c- \"Accuracy\"\n#LDA \nset.seed(7) \nfit.lda \u003c- train(Species~., data\u003ddataset, method\u003d\"lda\", metric\u003dmetric, trControl\u003dtrainControl) \n",
+      "user": "17009703",
+      "dateUpdated": "2019-11-14 01:41:09.882",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695591607_1812918480",
+      "id": "20191114-013951_884645428",
+      "dateCreated": "2019-11-14 01:39:51.607",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n#summarize LDA \nprint(fit.lda)",
+      "user": "17009703",
+      "dateUpdated": "2019-11-14 01:41:12.357",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695617115_-1405569356",
+      "id": "20191114-014017_1332040827",
+      "dateCreated": "2019-11-14 01:40:17.115",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n# estimate skill of LDA on the validation dataset \npredictions \u003c- predict(fit.lda, validation) \nconfusionMatrix(predictions, validation$Species)\n",
+      "user": "17009703",
+      "dateUpdated": "2019-11-14 01:41:16.230",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695631693_-2021553768",
+      "id": "20191114-014031_869395662",
+      "dateCreated": "2019-11-14 01:40:31.693",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "17009703_0",
+  "id": "2ET7CFJAK",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
