@@ -1,0 +1,100 @@
+{
+  "paragraphs": [
+    {
+      "text": "//Description of project\nTeammates: Toh Jing Wei 24857\n           Lee Hoong Wai 24851\n           Zahier Zakwan 24963\n           \n1. How you read the data set.\n Each species have their own distinct value for each variables (sepal width, sepal length, petal length and petal width). With the help of  pair plot we can further understand if there is any values for the variables that are the same but belongs to different species. We can also use the summary command to investigate the range of values of the variables for the given dataset.\n \n \n 2.\tHow you used model to get available attributes based on variables in data set.\n\nBy taking the first, second, third, and fourth row which is the sepal length, sepal width, petal length,, and petal width. The data then undergoes principal component analysis. This essentially uses orthogonal transformation to convert a set of observations of possibly correlated variables into set of values of linearly uncorrelated or principal components\n\n\n3. How you can develop cluster based on each class (ex: species in data set). \nFrom the dataset given, since each class (species) have different value range for each variable, we can use principal component 1 being the x-axis  and principal component 2 being y-axis (which contain the values for each variables of each species) , which then will be plot and seperated according to their cluster of different class.\n",
+      "user": "24857",
+      "dateUpdated": "2019-11-14 01:37:26.501",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695419448_1150772509",
+      "id": "20191114-013659_1498357818",
+      "dateCreated": "2019-11-14 01:36:59.448",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\nlibrary(ggplot2) \t\t\t\t\t\t\t\t#enabling the library for creating graphics\nlibrary(ggalt)\t\t\t\t\t\t\t\t\t#enabling extra coordinate systems, geoms, and statistical transformations for ggplot2\t\nlibrary(ggfortify)\t\t\t\t\t\t\t\t#this will let ggplot2 know how to interpret PCA objects\niris_data \u003c- iris[c(1,2,3,4)]\t\t\t\t\t#stores attributes (Like Sepal length, sepal width, petal length, and petal width) of the iris data set in iris data to be used\niris_pca \u003c- prcomp(iris_data)\t\t\t\t\t#perfroms principal component analysis on the data in iris_data and returns a list with class \"prcomp\" containing sdev (standard deviation of principal components, rotation (matrix of variable loadings), x and center,scale.\n\n#first 2 components are selected (PC1 and PC2)\n\ndtp \u003c- data.frame(\u0027Species\u0027 \u003d iris$Species, iris_pca$x[,1:2]) \n#creates a list of which containing data such as species and data from the first and second column of principal component analysis data in iris_pca\n\ncluster2 \u003c- ggplot(data \u003d dtp)+ geom_point(aes(x \u003d PC1, y \u003d PC2, shape\u003dSpecies, color\u003dSpecies))+ geom_encircle(expand \u003d 0.015, aes(x \u003d PC1, y \u003d PC2, color\u003dSpecies))+ theme_classic() + coord_fixed(ratio \u003d 2.5) +\n  labs(title \u003d \"Iris Clustering\",\n       subtitle \u003d \"With Principal Components 1 and 2 as x and y axis respectively\",\n       x \u003d \"Principal Component 1\",\n       y \u003d \"Principal Component 2\",\n       caption \u003d \"Source: iris          Team Members: Hoong Wai(24851), Jing Wei(24857), Zahier Zakwan(24963)\")\n#using ggplot and the data that is calculated and analysed at the top to set points to be plotted later\n#the x-axis is the data of PC1 in dtp  while y-axis is data of PC2 in dtp\n\t   \nplot(cluster2)\n#plotting points in ggplot",
+      "user": "24857",
+      "dateUpdated": "2019-11-14 01:49:01.068",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\n\u003cpre\u003e\u003ccode\u003eError in library(ggalt): there is no package called \u0027ggalt\u0027\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in library(ggfortify): there is no package called \u0027ggfortify\u0027\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in geom_encircle(expand \u003d 0.015, aes(x \u003d PC1, y \u003d PC2, color \u003d Species)): could not find function \"geom_encircle\"\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in plot(cluster2): object \u0027cluster2\u0027 not found\n\u003c/code\u003e\u003c/pre\u003e\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695446644_1141489341",
+      "id": "20191114-013726_1618014797",
+      "dateCreated": "2019-11-14 01:37:26.644",
+      "dateStarted": "2019-11-14 01:49:01.087",
+      "dateFinished": "2019-11-14 01:49:01.176",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n",
+      "user": "24857",
+      "dateUpdated": "2019-11-14 01:39:20.907",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695560906_1148227576",
+      "id": "20191114-013920_932643660",
+      "dateCreated": "2019-11-14 01:39:20.906",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "24857_0",
+  "id": "2EUM2EBB4",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
