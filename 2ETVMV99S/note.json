@@ -1,0 +1,73 @@
+{
+  "paragraphs": [
+    {
+      "text": "library(\u0027ggplot2\u0027)\n#\u003e Warning: package \u0027ggplot2\u0027 was built under R version 3.3.1\ndata(iris)\nhead(iris)\n#\u003e   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n#\u003e 1          5.1         3.5          1.4         0.2  setosa\n#\u003e 2          4.9         3.0          1.4         0.2  setosa\n#\u003e 3          4.7         3.2          1.3         0.2  setosa\n#\u003e 4          4.6         3.1          1.5         0.2  setosa\n#\u003e 5          5.0         3.6          1.4         0.2  setosa\n#\u003e 6          5.4         3.9          1.7         0.4  setosa\n\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Sepal.Length, colour \u003d Species)) +\n  geom_point() +\n  ggtitle(\u0027Iris Species by Petal and Sepal Length\u0027)\n\n\n#run separately\n#cluster on based on each \u0027class\u0027\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Petal.Width, colour \u003d Species)) +\n  geom_point() +\n  stat_ellipse() +\n  ggtitle(\u0027Iris Species by Petal length and Petal Width\u0027)",
+      "user": "17006701",
+      "dateUpdated": "2019-11-14 02:25:41.915",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698325828_2091820215",
+      "id": "20191114-022525_307954434",
+      "dateCreated": "2019-11-14 02:25:25.828",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "library(ggplot2)  \n   \n scat.plot.sepal \u003c- ggplot(data \u003d iris.data, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color \u003d Species)) + geom_point() + ggtitle(\"Sepal Width VS Sepal Length\") + theme_bw() + theme(plot.title \u003d element_text(hjust\u003d0.5))  \n   \n scat.plot.petal \u003c- ggplot(data \u003d iris.data, aes(x \u003d Petal.Length, y \u003d Petal.Width, color \u003d Species)) + geom_point() + ggtitle(\"Petal Width VS Petal Length\") + theme_bw() + theme(plot.title \u003d element_text(hjust\u003d0.5))  \n   \n scat.plot.sepal.facet \u003c- ggplot(data \u003d iris.data, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color \u003d Species)) + geom_point() + facet_grid(. ~ Species) + ggtitle(\"Sepal Width VS Sepal Length\") + theme_bw() + theme(plot.title \u003d element_text(hjust\u003d0.5))  \n   \n scat.plot.petal.facet \u003c- ggplot(data \u003d iris.data, aes(x \u003d Petal.Length, y \u003d Petal.Width, color \u003d Species)) + geom_point() + facet_grid(. ~ Species) + ggtitle(\"Petal Width VS Petal Length\") + theme_bw() + theme(plot.title \u003d element_text(hjust\u003d0.5))  \n ",
+      "user": "17006701",
+      "dateUpdated": "2019-11-14 02:22:23.510",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573696459528_-821979462",
+      "id": "20191114-015419_800177670",
+      "dateCreated": "2019-11-14 01:54:19.528",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "17006701_0",
+  "id": "2ETVMV99S",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
