@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "% r\nlibrary(ggplot2)\n\n# Use Sepal Length and Width to predicts flower species\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003d\"glm\", se\u003dFALSE, fullrange\u003dTRUE) + # Regression Lines\n  stat_ellipse()\n\n# Add clustering/ draw circles\np \u003c- ggplot(iris, aes(Sepal.Length, Sepal.Width, color \u003d Species)) +\n  geom_point()",
+      "text": "%r\nlibrary(ggplot2)\n\n# Use Sepal Length and Width to predicts flower species\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003d\"glm\", se\u003dFALSE, fullrange\u003dTRUE) + # Regression Lines\n  stat_ellipse()\n\n# Add clustering/ draw circles\np \u003c- ggplot(iris, aes(Sepal.Length, Sepal.Width, color \u003d Species)) +\n  geom_point()",
       "user": "24863",
-      "dateUpdated": "2019-11-14 00:35:19.763",
+      "dateUpdated": "2019-11-14 00:36:51.303",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
