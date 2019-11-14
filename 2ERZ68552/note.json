@@ -1,0 +1,70 @@
+{
+  "paragraphs": [
+    {
+      "text": "library(caret)\r\nlibrary(ggplot2)\r\ndata(iris)\r\nset.seed(1324)\r\ntrainSet\u003c-createDataPartition(iris$Species,p\u003d0.75,list\u003dFALSE)\r\ntrain1\u003c-iris[trainSet,]\r\nprint(train1)\r\ntest\u003c-iris[-trainSet,]\r\nfeaturePlot(x \u003d iris[, 1:4], \r\n            y \u003d iris$Species, \r\n            plot \u003d \"ellipse\",\r\n            auto.key \u003d list(columns \u003d 3))\r\nfit.knn \u003c- train(Species~., data\u003dtrain1, method\u003d\"knn\")\r\nprint(fit.knn)\r\npredictions \u003c- predict(fit.knn, test)\r\nconfusionMatrix(predictions, test$Species)\r\n",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 01:47:11.413",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:33: error: not found: value library\n       library(caret)\n       ^\n\u003cconsole\u003e:33: error: not found: value caret\n       library(caret)\n               ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695953498_-1618529593",
+      "id": "20191114-014553_99314973",
+      "dateCreated": "2019-11-14 01:45:53.498",
+      "dateStarted": "2019-11-14 01:47:11.424",
+      "dateFinished": "2019-11-14 01:47:11.446",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "17006143",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573696031413_439375991",
+      "id": "20191114-014711_1497358578",
+      "dateCreated": "2019-11-14 01:47:11.413",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "17006143_1",
+  "id": "2ERZ68552",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
