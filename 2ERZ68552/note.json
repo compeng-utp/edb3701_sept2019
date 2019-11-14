@@ -1,9 +1,48 @@
 {
   "paragraphs": [
     {
-      "text": "library(caret)\r\nlibrary(ggplot2)\r\ndata(iris)\r\nset.seed(1324)\r\ntrainSet\u003c-createDataPartition(iris$Species,p\u003d0.75,list\u003dFALSE)\r\ntrain1\u003c-iris[trainSet,]\r\nprint(train1)\r\ntest\u003c-iris[-trainSet,]\r\nfeaturePlot(x \u003d iris[, 1:4], \r\n            y \u003d iris$Species, \r\n            plot \u003d \"ellipse\",\r\n            auto.key \u003d list(columns \u003d 3))\r\nfit.knn \u003c- train(Species~., data\u003dtrain1, method\u003d\"knn\")\r\nprint(fit.knn)\r\npredictions \u003c- predict(fit.knn, test)\r\nconfusionMatrix(predictions, test$Species)\r\n",
+      "text": "%r\r\ndata(iris)\r\nset.seed(1324)\r\ntrainSet\u003c-createDataPartition(iris$Species,p\u003d0.75,list\u003dFALSE)\r\ntrain1\u003c-iris[trainSet,]\r\nprint(train1)\r\ntest\u003c-iris[-trainSet,]\r\nfeaturePlot(x \u003d iris[, 1:4], \r\n            y \u003d iris$Species, \r\n            plot \u003d \"ellipse\",\r\n            auto.key \u003d list(columns \u003d 3))\r\nfknn \u003c- train(Species~., data\u003dtrain1, method\u003d\"knn\")\r\nprint(fknn)\r\npredictions \u003c- predict(fknn, test)\r\nconfusionMatrix(predictions, test$Species)\r\n\r\n",
       "user": "17006143",
-      "dateUpdated": "2019-11-14 01:47:11.413",
+      "dateUpdated": "2019-11-14 02:00:01.365",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/r",
+        "tableHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\n\u003cpre\u003e\u003ccode\u003eError in createDataPartition(iris$Species, p \u003d 0.75, list \u003d FALSE): could not find function \"createDataPartition\"\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in `[.data.frame`(iris, trainSet, ): object \u0027trainSet\u0027 not found\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in print(train1): object \u0027train1\u0027 not found\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in `[.data.frame`(iris, -trainSet, ): object \u0027trainSet\u0027 not found\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in featurePlot(x \u003d iris[, 1:4], y \u003d iris$Species, plot \u003d \"ellipse\", : could not find function \"featurePlot\"\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in train(Species ~ ., data \u003d train1, method \u003d \"knn\"): could not find function \"train\"\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in print(fknn): object \u0027fknn\u0027 not found\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in predict(fknn, test): object \u0027fknn\u0027 not found\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003cpre\u003e\u003ccode\u003eError in confusionMatrix(predictions, test$Species): could not find function \"confusionMatrix\"\n\u003c/code\u003e\u003c/pre\u003e\n\n\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695953498_-1618529593",
+      "id": "20191114-014553_99314973",
+      "dateCreated": "2019-11-14 01:45:53.498",
+      "dateStarted": "2019-11-14 02:00:01.380",
+      "dateFinished": "2019-11-14 02:00:01.448",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 01:58:42.416",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -15,33 +54,9 @@
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "editorMode": "ace/mode/scala"
+        "editorMode": "ace/mode/scala",
+        "tableHide": true
       },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "\u003cconsole\u003e:33: error: not found: value library\n       library(caret)\n       ^\n\u003cconsole\u003e:33: error: not found: value caret\n       library(caret)\n               ^\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1573695953498_-1618529593",
-      "id": "20191114-014553_99314973",
-      "dateCreated": "2019-11-14 01:45:53.498",
-      "dateStarted": "2019-11-14 01:47:11.424",
-      "dateFinished": "2019-11-14 01:47:11.446",
-      "status": "ERROR",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "user": "17006143",
-      "config": {},
       "settings": {
         "params": {},
         "forms": {}
@@ -59,7 +74,7 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
-    "python:shared_process": [],
+    "md:shared_process": [],
     "angular:shared_process": [],
     "spark:shared_process": []
   },
