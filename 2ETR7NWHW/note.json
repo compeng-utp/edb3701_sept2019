@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%r\nlibrary(ggplot2)\n\n# Use Sepal Length and Width to predicts flower species\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003d\"glm\", se\u003dFALSE, fullrange\u003dTRUE) + # Regression Lines\n  stat_ellipse()\n\n# Add clustering/ draw circles\np \u003c- ggplot(iris, aes(Sepal.Length, Sepal.Width, color \u003d Species)) +\n  geom_point()",
+      "text": "V4%r\nlibrary(ggplot2)\n\n# Use Sepal Length and Width to predicts flower species\nggplot(iris, aes(x \u003d Sepal.Length, y \u003d Sepal.Width, color\u003dSpecies, shape\u003dSpecies)) +\n  geom_point() + \n  geom_smooth(method\u003d\"glm\", se\u003dFALSE, fullrange\u003dTRUE) + # Regression Lines\n  stat_ellipse()\n\n# Add clustering/ draw circles\np \u003c- ggplot(iris, aes(Sepal.Length, Sepal.Width, color \u003d Species)) +\n  geom_point()",
       "user": "24863",
-      "dateUpdated": "2019-11-14 00:36:51.303",
+      "dateUpdated": "2019-11-14 01:44:50.349",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -21,24 +21,43 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: No interpreter is binded to this note: 2ETR7NWHW"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1573691068355_-239201732",
       "id": "20191114-002428_680884761",
       "dateCreated": "2019-11-14 00:24:28.355",
-      "status": "ABORT",
+      "status": "ERROR",
+      "errorMessage": "org.apache.zeppelin.interpreter.InterpreterNotFoundException: No interpreter is binded to this note: 2ETR7NWHW\n\tat org.apache.zeppelin.interpreter.InterpreterFactory.getInterpreter(InterpreterFactory.java:60)\n\tat org.apache.zeppelin.notebook.Paragraph.getBindedInterpreter(Paragraph.java:242)\n\tat org.apache.zeppelin.notebook.Paragraph.execute(Paragraph.java:350)\n\tat org.apache.zeppelin.notebook.Note.run(Note.java:683)\n\tat org.apache.zeppelin.socket.NotebookServer.persistAndExecuteSingleParagraph(NotebookServer.java:1867)\n\tat org.apache.zeppelin.socket.NotebookServer.runParagraph(NotebookServer.java:1826)\n\tat org.apache.zeppelin.socket.NotebookServer.onMessage(NotebookServer.java:261)\n\tat org.apache.zeppelin.socket.NotebookSocket.onWebSocketText(NotebookSocket.java:59)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextMessage(JettyListenerEventDriver.java:128)\n\tat org.eclipse.jetty.websocket.common.message.SimpleTextMessage.messageComplete(SimpleTextMessage.java:69)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.appendMessage(AbstractEventDriver.java:65)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextFrame(JettyListenerEventDriver.java:122)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.incomingFrame(AbstractEventDriver.java:161)\n\tat org.eclipse.jetty.websocket.common.WebSocketSession.incomingFrame(WebSocketSession.java:309)\n\tat org.eclipse.jetty.websocket.common.extensions.ExtensionStack.incomingFrame(ExtensionStack.java:214)\n\tat org.eclipse.jetty.websocket.common.Parser.notifyFrame(Parser.java:220)\n\tat org.eclipse.jetty.websocket.common.Parser.parse(Parser.java:258)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.readParse(AbstractWebSocketConnection.java:632)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.onFillable(AbstractWebSocketConnection.java:480)\n\tat org.eclipse.jetty.io.AbstractConnection$2.run(AbstractConnection.java:544)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:635)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:555)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "24863",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695414629_760702207",
+      "id": "20191114-013654_442194737",
+      "dateCreated": "2019-11-14 01:36:54.629",
+      "status": "READY",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "24863_Assignment1",
+  "name": "24863_0",
   "id": "2ETR7NWHW",
   "noteParams": {},
   "noteForms": {},
-  "angularObjects": {
-    "md:shared_process": [],
-    "python:shared_process": [],
-    "angular:shared_process": [],
-    "spark:shared_process": []
-  },
+  "angularObjects": {},
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
