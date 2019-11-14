@@ -1,0 +1,82 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/Cities.txt\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),1)\n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
+      "user": "instruct",
+      "dateUpdated": "2019-11-14 01:39:16.516",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\ntxt: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[3] at parallelize at \u003cconsole\u003e:37\nres13: Int \u003d 16272\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.4:4040/jobs/job?id\u003d1"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695517847_-922368763",
+      "id": "20191114-013837_2025584576",
+      "dateCreated": "2019-11-14 01:38:37.847",
+      "dateStarted": "2019-11-14 01:39:16.528",
+      "dateFinished": "2019-11-14 01:39:17.476",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "instruct",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695530372_2082160746",
+      "id": "20191114-013850_1790104093",
+      "dateCreated": "2019-11-14 01:38:50.372",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Workbook2_template",
+  "id": "2ES8J2XPJ",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
