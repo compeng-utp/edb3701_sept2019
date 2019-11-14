@@ -1,0 +1,434 @@
+{
+  "paragraphs": [
+    {
+      "text": "// Spark version\nsc.version",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.321",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res102: String \u003d 2.2.0\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699321_-2141605367",
+      "id": "20191011-061716_662046391",
+      "dateCreated": "2019-11-14 02:31:39.321",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\u003ch2\u003eEDB3701 Sept 2019\u003c/h2\u003e\n\u003ch1\u003eWorkbook 1\u003c/h1\u003e\n\u003cp\u003eIn this workbook, you will see sample code showing how to read and convert text file in the form of comma-separated values and perform simple manipulations in Apache Spark.\nThis notebook is not writable as it is a template.\u003c/p\u003e\n\u003cp\u003e1. Clone this notebook into your local drive and rename it to \u003cyour id number\u003e_1 e.g. 17817_1 \u003c/p\u003e\n\u003cp\u003e2. Change the notebook permission so that owernship and write permission belong only to you. Ensure that read and run permission is given to user \"eval\".\u003c/p\u003e\n\u003cp\u003e3. Code directly in the boxes provided in answer to the questions below. Your work will be graded on your local notebook copy, which will not be visible to your coursemates.\u003c/p\u003e",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.322",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003ch2\u003eEDB3701 Sept 2019\u003c/h2\u003e\n\u003ch1\u003eWorkbook 1\u003c/h1\u003e\n\u003cp\u003eIn this workbook, you will see sample code showing how to read and convert text file in the form of comma-separated values and perform simple manipulations in Apache Spark.\nThis notebook is not writable as it is a template.\u003c/p\u003e\n\u003cp\u003e1. Clone this notebook into your local drive and rename it to \u003cyour id number\u003e_1 e.g. 17817_1 \u003c/p\u003e\n\u003cp\u003e2. Change the notebook permission so that owernship and write permission belong only to you. Ensure that read and run permission is given to user \"eval\".\u003c/p\u003e\n\u003cp\u003e3. Code directly in the boxes provided in answer to the questions below. Your work will be graded on your local notebook copy, which will not be visible to your coursemates.\u003c/p\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699321_208000608",
+      "id": "20191015-055203_113040403",
+      "dateCreated": "2019-11-14 02:31:39.321",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\u003ch3\u003eLoad .csv into Spark and map reduce operation\u003c/h3\u003e\nThis code snippet loads data in the file activepowertotal.csv into Apache Spark and performs a map-reduce operation to find the number of unique lines in the file. The file is a text file stored as a comma separated value with the following format\n\n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e device_id(integer), date_and_time(string), measured_power_in_kW(double)\u003c/p\u003e\n",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.322",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003ch3\u003eLoad .csv into Spark and map reduce operation\u003c/h3\u003e\nThis code snippet loads data in the file activepowertotal.csv into Apache Spark and performs a map-reduce operation to find the number of unique lines in the file. The file is a text file stored as a comma separated value with the following format\n\n\u003cp\u003e\u003c/p\u003e\n\u003cp\u003e device_id(integer), date_and_time(string), measured_power_in_kW(double)\u003c/p\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699322_1619165876",
+      "id": "20191015-055756_946902831",
+      "dateCreated": "2019-11-14 02:31:39.322",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\n\n//WORKING\n\n// load bank data\nval txt \u003d sc.parallelize(\n    IOUtils.toString(\n        new URL(\"file:///zeppelin/data/activepowertotal.csv\"),\n        Charset.forName(\"utf8\")).split(\"\\n\"),1)\n        \n\ntxt.map(s\u003d\u003e1).reduce((a,b)\u003d\u003e a+b)",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.323",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.commons.io.IOUtils\nimport java.net.URL\nimport java.nio.charset.Charset\njava.lang.OutOfMemoryError: Java heap space\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699322_2006881480",
+      "id": "20191015-025600_438924703",
+      "dateCreated": "2019-11-14 02:31:39.322",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%angular\n\u003ch3\u003eQuestions\u003c/h3\u003e\n\u003cp\u003e1. What is the size of the file, activepowertotal.csv\u003c/p\u003e\n\u003cp\u003e2. Read and display the first line of the file activepowertotal.csv\u003c/p\u003e\n\u003cp\u003e3. Compute the number of unique devices in the system. Implement a standard python/java/R method and implement a Spark method. Show the time it takes to compute under each implementation\u003c/p\u003e\n\u003cp\u003e4. Compute the maximum and minimum power measured in device_id 1 \u003c/p\u003e\n\u003cp\u003e5. Identify the date and time range during which this measurement was taken \u003c/p\u003e\n\u003cp\u003e6. Extract the number of measurements taken for the devices with device_id 1,2,3,4 and 5 \u003c/p\u003e\n\u003cp\u003e7. Extract and plot the power measured from device_id 1 only within the first week (Mon, Tue, Wed, Thur, Fri, Sat, Sun) of measurements \u003c/p\u003e\n\u003cp\u003e7. Find the maximum power measured from all devices ONLY during the duration of 8am-10pm daily, excluding weekends (Saturday \u0026 Sunday) \u003c/p\u003e\n\n\nPlease answer the following questions by writing code in the boxes provided below. The final line of your code should print the answer to each question. You must use Apache Spark to compute the answers except for questions with (free) bracket, in which case you are allowed to use any language that runs in Zeppelin i.e. Java/python/R/javascript",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.323",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003ch3\u003eQuestions\u003c/h3\u003e\n\u003cp\u003e1. What is the size of the file, activepowertotal.csv\u003c/p\u003e\n\u003cp\u003e2. Read and display the first line of the file activepowertotal.csv\u003c/p\u003e\n\u003cp\u003e3. Compute the number of unique devices in the system. Implement a standard python/java/R method and implement a Spark method. Show the time it takes to compute under each implementation\u003c/p\u003e\n\u003cp\u003e4. Compute the maximum and minimum power measured in device_id 1 \u003c/p\u003e\n\u003cp\u003e5. Identify the date and time range during which this measurement was taken \u003c/p\u003e\n\u003cp\u003e6. Extract the number of measurements taken for the devices with device_id 1,2,3,4 and 5 \u003c/p\u003e\n\u003cp\u003e7. Extract and plot the power measured from device_id 1 only within the first week (Mon, Tue, Wed, Thur, Fri, Sat, Sun) of measurements \u003c/p\u003e\n\u003cp\u003e7. Find the maximum power measured from all devices ONLY during the duration of 8am-10pm daily, excluding weekends (Saturday \u0026 Sunday) \u003c/p\u003e\n\n\nPlease answer the following questions by writing code in the boxes provided below. The final line of your code should print the answer to each question. You must use Apache Spark to compute the answers except for questions with (free) bracket, in which case you are allowed to use any language that runs in Zeppelin i.e. Java/python/R/javascript"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699323_179435378",
+      "id": "20191015-055923_1885293701",
+      "dateCreated": "2019-11-14 02:31:39.323",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q1 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.324",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "3173502\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699323_720932551",
+      "id": "20191015-035146_2034626492",
+      "dateCreated": "2019-11-14 02:31:39.323",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q2 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.324",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "txt: org.apache.spark.rdd.RDD[String] \u003d ParallelCollectionRDD[2] at parallelize at \u003cconsole\u003e:36\nres28: Array[String] \u003d Array(\"26,2019-08-05 07:00:14,241.767\r\", \"16,2019-08-05 07:00:14,53.9346\r\", \"10,2019-08-05 07:00:14,4.57527\r\", \"1,2019-08-05 07:00:14,199.377\r\", \"7,2019-08-05 07:00:14,3.28242\r\", \"13,2019-08-05 07:00:14,4.39179\r\", \"20,2019-08-05 07:00:14,81.2597\r\", \"27,2019-08-05 07:00:15,155.805\r\", \"8,2019-08-05 07:00:15,0.772234\r\", \"17,2019-08-05 07:00:15,6.80977\r\", \"11,2019-08-05 07:00:15,2.61438\r\", \"2,2019-08-05 07:00:15,0.179808\r\", \"14,2019-08-05 07:00:15,0.0786829\r\", \"21,2019-08-05 07:00:15,52.9496\r\", \"28,2019-08-05 07:00:16,24.1747\r\", \"12,2019-08-05 07:00:16,0.873726\r\", \"9,2019-08-05 07:00:16,5.98959\r\", \"15,2019-08-05 07:00:16,2.21686\r\", \"18,2019-08-05 07:00:16,0.63792\r\", \"3,2019-08-05 07:00:16,1.15312\r\", \"22,2019-08-05 07:00:16,14.3428\r\", \"19,2019-08-05 07:00:17,10.844\r\", ...java.io.IOException: Incomplete HDFS URI, no host: hdfs://localhost%20:9000/airports.csv\n  at org.apache.hadoop.hdfs.DistributedFileSystem.initialize(DistributedFileSystem.java:139)\n  at org.apache.hadoop.fs.FileSystem.createFileSystem(FileSystem.java:2316)\n  at org.apache.hadoop.fs.FileSystem.access$200(FileSystem.java:90)\n  at org.apache.hadoop.fs.FileSystem$Cache.getInternal(FileSystem.java:2350)\n  at org.apache.hadoop.fs.FileSystem$Cache.get(FileSystem.java:2332)\n  at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:369)\n  at org.apache.hadoop.fs.Path.getFileSystem(Path.java:296)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:350)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:348)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)\n  at scala.collection.immutable.List.flatMap(List.scala:344)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:348)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)\n  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:533)\n  at org.apache.spark.sql.DataFrameReader.csv(DataFrameReader.scala:412)\n  ... 52 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699324_172510397",
+      "id": "20191015-061554_1003330040",
+      "dateCreated": "2019-11-14 02:31:39.324",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q3 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.324",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699324_1385080345",
+      "id": "20191015-061557_777936840",
+      "dateCreated": "2019-11-14 02:31:39.324",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q4 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.325",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699324_-1118009413",
+      "id": "20191015-061558_1671416288",
+      "dateCreated": "2019-11-14 02:31:39.324",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q5 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.325",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699325_1372538163",
+      "id": "20191015-061559_1036981985",
+      "dateCreated": "2019-11-14 02:31:39.325",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q6 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.325",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699325_570469939",
+      "id": "20191015-061600_505848231",
+      "dateCreated": "2019-11-14 02:31:39.325",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Q7 Answer",
+      "user": "17006143",
+      "dateUpdated": "2019-11-14 02:31:39.326",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698699326_-1806364434",
+      "id": "20191015-061601_1707776757",
+      "dateCreated": "2019-11-14 02:31:39.326",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "17006143_2",
+  "id": "2ESYKUG22",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
