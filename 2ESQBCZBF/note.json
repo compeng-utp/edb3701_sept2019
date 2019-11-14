@@ -1,0 +1,70 @@
+{
+  "paragraphs": [
+    {
+      "text": "\r\nlibrary(\u0027ggplot2\u0027)\r\n#\u003e Warning: package \u0027ggplot2\u0027 was built under R version 3.3.1\r\ndata(iris)\r\nhead(iris)\r\n#\u003e   Sepal.Length Sepal.Width Petal.Length Petal.Width Species\r\n#\u003e 1          5.1         3.5          1.4         0.2  setosa\r\n#\u003e 2          4.9         3.0          1.4         0.2  setosa\r\n#\u003e 3          4.7         3.2          1.3         0.2  setosa\r\n#\u003e 4          4.6         3.1          1.5         0.2  setosa\r\n#\u003e 5          5.0         3.6          1.4         0.2  setosa\r\n#\u003e 6          5.4         3.9          1.7         0.4  setosa\r\n\r\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Sepal.Length, colour \u003d Species)) +\r\n  geom_point() +\r\n  ggtitle(\u0027Iris Species by Petal and Sepal Length\u0027)\r\n\r\n\r\n#run separately\r\n#cluster on based on each \u0027class\u0027\r\nggplot(iris, aes(x \u003d Petal.Length, y \u003d Petal.Width, colour \u003d Species)) +\r\n  geom_point() +\r\n  stat_ellipse() +\r\n  ggtitle(\u0027Iris Species by Petal length and Petal Width\u0027)",
+      "user": "24901",
+      "dateUpdated": "2019-11-14 02:23:25.714",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: error: unclosed character literal\nlibrary(\u0027ggplot2\u0027)\n                ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573695700912_819572618",
+      "id": "20191114-014140_1167810664",
+      "dateCreated": "2019-11-14 01:41:40.912",
+      "dateStarted": "2019-11-14 02:23:25.726",
+      "dateFinished": "2019-11-14 02:23:25.735",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "24901",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573698205714_176445585",
+      "id": "20191114-022325_156527782",
+      "dateCreated": "2019-11-14 02:23:25.715",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "24901_0",
+  "id": "2ESQBCZBF",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
