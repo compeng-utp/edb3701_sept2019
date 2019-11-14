@@ -1,0 +1,102 @@
+{
+  "paragraphs": [
+    {
+      "text": "Teammates: Toh Jing Wei 24857\n           Lee Hoong Wai 24851\n           Zahier Zakwan 24963\n           \n1. How you read the data set.\n Each species have their own distinct value for each variables (sepal width, sepal length, petal length and petal width). With the help of  pair plot we can further understand if there is any values for the variables that are the same but belongs to different species. We can also use the summary command to investigate the range of values of the variables for the given dataset.\n \n \n 2.\tHow you used model to get available attributes based on variables in data set.\n\nBy taking the first, second, third, and fourth row which is the sepal length, sepal width, petal length,, and petal width. The data then undergoes principal component analysis. This essentially uses orthogonal transformation to convert a set of observations of possibly correlated variables into set of values of linearly uncorrelated or principal components\n\n\n3. How you can develop cluster based on each class (ex: species in data set). \nFrom the dataset given, since each class (species) have different value range for each variable, we can use principal component 1 being the x-axis  and principal component 2 being y-axis (which contain the values for each variables of each species) , which then will be plot and seperated according to their cluster of different class.\n",
+      "user": "24851",
+      "dateUpdated": "2019-11-14 01:17:23.080",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573694236809_-1602027135",
+      "id": "20191113-104243_377233673",
+      "dateCreated": "2019-11-14 01:17:16.810",
+      "status": "ABORT",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n\n// code for program\n\nlibrary(ggplot2) \t\t\t\t\t\t\t\t//enabling the library for creating graphics\nlibrary(ggalt)\t\t\t\t\t\t\t\t\t//enabling extra coordinate systems, geoms, and statistical transformations for ggplot2\t\nlibrary(ggfortify)\t\t\t\t\t\t\t\t//this will let ggplot2 know how to interpret PCA objects\niris_data \u003c- iris[c(1,2,3,4)]\t\t\t\t\t//stores attributes (Like Sepal length, sepal width, petal length, and petal width) of the iris data set in iris data to be used\niris_pca \u003c- prcomp(iris_data)\t\t\t\t\t//perfroms principal component analysis on the data in iris_data and returns a list with class \"prcomp\" containing sdev (standard deviation of principal components, rotation (matrix of variable loadings), x and center,scale.\n\n#first 2 components are selected (PC1 and PC2)\n\ndtp \u003c- data.frame(\u0027Species\u0027 \u003d iris$Species, iris_pca$x[,1:2]) \n//creates a list of which containing data such as species and data from the first and second column of principal component analysis data in iris_pca\n\ncluster2 \u003c- ggplot(data \u003d dtp)+ geom_point(aes(x \u003d PC1, y \u003d PC2, shape\u003dSpecies, color\u003dSpecies))+ geom_encircle(expand \u003d 0.015, aes(x \u003d PC1, y \u003d PC2, color\u003dSpecies))+ theme_classic() + coord_fixed(ratio \u003d 2.5) +\n  labs(title \u003d \"Iris Clustering\",\n       subtitle \u003d \"With Principal Components 1 and 2 as x and y axis respectively\",\n       x \u003d \"Principal Component 1\",\n       y \u003d \"Principal Component 2\",\n       caption \u003d \"Source: iris          Team Members: Hoong Wai(24851), Jing Wei(24857), Zahier Zakwan(24963)\")\n//using ggplot and the data that is calculated and analysed at the top to set points to be plotted later\n//the x-axis is the data of PC1 in dtp  while y-axis is data of PC2 in dtp\n\t   \nplot(cluster2)\n//plotting points in ggplot",
+      "user": "24851",
+      "dateUpdated": "2019-11-14 01:17:31.874",
+      "config": {
+        "editorSetting": {
+          "language": "r",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/r",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sparkR backend is dead, please try to increase spark.r.backendConnectionTimeout"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1573694236810_-492932251",
+      "id": "20191022-130447_1608225450",
+      "dateCreated": "2019-11-14 01:17:16.810",
+      "status": "ABORT",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%r\n",
+      "user": "24851",
+      "dateUpdated": "2019-11-14 01:17:16.811",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1573694236811_329270948",
+      "id": "20191113-104526_342634975",
+      "dateCreated": "2019-11-14 01:17:16.811",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "24851_0",
+  "id": "2EV3QZ8Q8",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
+    "angular:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
